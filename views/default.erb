@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AresMUSH</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+   <!-- 
+    <link rel="stylesheet" href="/javascripts/jquery-ui-1.11.4/jquery-ui.min.css">
+    <script src="/javascripts/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+    <script src="/javascripts/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script src="/javascripts/jquery.bootstrap-growl.min.js"></script>
+    -->
+       
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <link rel="stylesheet" type="text/css" href="/styles/ares.css">
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+       
+    });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="site-title">Ares Central</h1>
+            </div>
+            <div class="col-md-6 text-right user-bar">
+            <% if @user %>
+            <p>Welcome, <%= @user.name %>.</p>
+            <p><a href="/logout">Logout</a> | <a href="/handle/<%= @user.id %>/edit">My Account</a> </p>
+            <% else %>
+            <p><a href="/login">Login</a></p>
+            <% end %>
+            </div>
+        </div>
+        
+        <div class="row">
+          
+            <div class="col-md-12">
+              
+                        
+                        
+            <nav class="navbar navbar-inverse">
+                <ul class="nav navbar-nav">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/handles">Players</a></li>
+                  <li><a href="/games">Games</a></li> 
+                  <li><a href="http://www.aresmush.com">About</a></li> 
+                </ul>
+            </nav>
+                            
+
+<% if !styled_flash.empty? %>             
+                <div class="alert alert-info">
+                    <%= styled_flash %>
+                  </div>
+              <% end %>
+                <%= yield %>
+              
+            </div>
+                                      
+        </div>
+        
+    
+      <div class="row">
+          <div class="col-md-12 footer">
+
+<p>Read the AresMUSH <a href="http://www.aresmush.com/privacy">Privacy Policy</a> to find out what we do with your data.</p>
+
+<p>          Report bugs or offensive content to faraday@aresmush.com. </p>
+  
+          </div>
+      </div>
+              
+    </div>
+    
+</body>
+</html>

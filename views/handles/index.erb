@@ -1,0 +1,8 @@
+<p>Here are all AresMUSH players who have created a player handle.  You can view their player profiles and their linked characters.  Linking a character to your handle lets other people know who you play.  You can think of it as a cross-game public alt.  Read more about handles in the Ares <a href="http://www.aresmush.com/handles">Player Handle Guide</a></p></p>
+
+<ul>
+  <% @handles.sort_by { |h| h.name }.each do |h| %>
+  <li><a href="/handle/<%= h.name %>"><%= h.name %></a> 
+  </li>
+  <% end %>
+</ul>

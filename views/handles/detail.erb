@@ -1,0 +1,30 @@
+<% @handle = @view_data[:handle] %>
+
+  <h2><%= @handle.name %></h2>
+  
+  <% if !@handle.image_url.blank? %>
+      <a href="<%= @handle.image_url %>"><img src="<%= @handle.image_url %>" class="profile-image"/></a>
+  <% end %>
+    
+  <% if !@handle.profile.blank? %>
+<p>      <%= @markdown.render(@handle.profile) %></p>
+  <% end %>
+  
+  <h3>Characters</h3>
+  
+  <ul>
+  <% @handle.linked_chars.sort_by { |c| c.game.name }.each do |c| %>
+    <li>
+    <%= c.name %>@<a href="/game/<%= c.game.id %>/detail"><%= c.game.name %></a>
+    </li>
+  <% end %>
+  </ul>
+
+  <h3>Friends</h3>
+  
+  <ul>
+  <% @handle.friends.each do |f| %>
+      <li><a href="/handle/<%= f.name %>"><%= f.name %></a></li>
+  <% end %>
+  </ul>
+  

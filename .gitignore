@@ -1,0 +1,7 @@
+*.log
+publish.rb
+db.yml
+.DS_Store
+todo/*
+Gemfile.lock
+config.rb

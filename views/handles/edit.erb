@@ -1,0 +1,73 @@
+<% @handle = @view_data[:handle] %>
+
+<h2>Handle Management</h2>
+
+<ul>
+    <li><a href="/handle/<%= @handle.id %>/friend/manage">Manage Friends</a></li>
+    <li><a href="/handle/<%= @handle.id %>/char/manage">Manage Characters</a></li>
+    <li><a href="/change-password">Change Password</a></li>
+</ul>
+
+<h2>Edit Handle Preferences</h2>
+<div class="panel panel-default">
+<div class="panel-body">
+    
+<form method="POST" action="/handle/<%= @handle.id %>/edit">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">Login Information</div>
+    
+            <div class="panel-body">
+        
+                <p><b class="col-sm-3">Email (Optional):</b> <input type="text" name="email" value="<%= @handle.email %>">
+                
+                <p><b class="col-sm-3">What was your most memorable MU*?:</b> <input type="text" name="security_question" value="<%= @handle.security_question %>">
+                </p>
+                
+                <br/>
+                <p><i>Note:</i> Email and the memorable MU* question will only be used to confirm your identity if you forget your password.  We won't misuse your information.  See our <a href="http://www.aresmush.com/privacy">Privacy Policy</a> for details.
+                </p>
+            </div>
+            
+        <div class="panel panel-info">
+            <div class="panel-heading">Character Preferences</div>
+    
+            <div class="panel-body">
+                
+                <p>These preferences will carry over to any character that you link to your handle.</p>
+
+                  <p><b class="col-sm-3">Autospace:</b> <input type="text" name="autospace" value="<%= @handle.autospace %>" ></p>
+  
+                  <p><b class="col-sm-3">Timezone:</b>
+  
+                  <select name="timezone">
+                      <% TimezoneHelper.timezones.each do |tz| %>
+                        <option value="<%= tz %>" <% if @handle.timezone == tz %> selected<% end %>><%= tz %></option>
+                      <% end %>
+                  </select>
+                </p>   
+           </div>
+       </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">Profile</div>
+    
+            <div class="panel-body">
+          
+                <p>This controls the appearance of your profile on Ares Central.  The profile can contain <a href="https://daringfireball.net/projects/markdown/">markdown text</a>. </p>
+                
+                <div class="alert alert-warning">Keep your profile clean.  Offensive content will be removed.</div>
+       
+                <p><b class="col-sm-3">Image URL:</b> <input type="text" name="image_url" size="50" value="<%= @handle.image_url %>"></p>
+        
+                <p><b class="col-sm-3">Profile:</b> </p>
+                <p><textarea rows="20" cols="100" name="profile"><%= @handle.profile %></textarea></p>
+           </div>
+       </div>
+
+  <input type="submit" value="Save Changes">
+</form>
+
+</div>
+</div>
+

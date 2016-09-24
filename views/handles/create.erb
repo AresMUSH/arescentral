@@ -1,0 +1,38 @@
+<h2>Create a Handle</h2>
+
+<form method="POST" action="/handle/create">
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">Login Information</div>
+    
+            <div class="panel-body">
+                
+                <p><b class="col-sm-3" >Handle Name:</b> <input type="text" name="name"></p>
+
+                <p><b class="col-sm-3">Password:</b> <input type="password" name="password"></p>
+
+                <p><b class="col-sm-3">Confirm Password:</b> <input type="password" name="confirm_password"></p>
+                
+                <p><b class="col-sm-3">Email (Optional):</b> <input type="text" name="email"></p>
+                                
+                <p><b class="col-sm-3">What was your most memorable MU*?:</b> <input type="text" name="security_question"></p>
+                <br/>
+                <p><i>Note:</i> Email and the memorable MU* question will only be used to confirm your identity if you forget your password.  We won't misuse your information.  See our <a href="http://www.aresmush.com/privacy">Privacy Policy</a> for details.
+                </p>
+                
+                
+            </div>
+        </div>
+
+       <div class="g-recaptcha" data-sitekey="<%= Config.recaptcha_site_key %>"></div>
+<br/>
+        <input type="submit" value="Create Handle">   
+    </div>
+</div>
+
+
+
+</form>

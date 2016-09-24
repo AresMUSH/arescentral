@@ -1,0 +1,37 @@
+<p>The AresMUSH games directory lists all public games running AresMUSH.</p>
+    
+    <table  class="table table-striped">
+    <tr>
+        <th>Game</th>
+        <th>Category</th>
+        <th>Address</th>
+        <th>Status</th>
+    </tr>
+  <% @open_games.sort_by { |g| g.category }.each do |g| %>
+  <% if g.is_public? %>
+  <tr>
+      <td><a href="/game/<%= g.id %>/detail"><%= g.name %></a> </td>
+      <td><%= g.category %> </td>
+      <td><a href="<%= g.address %>"><%= g.address %></a> </td>
+      <td><%= format_status(g.status) %></td>
+  </tr>
+  <% end %>
+  <% end %>
+  
+  
+  
+</table>
+
+
+  
+  <b>Closed Games</b>
+  
+  <ul>
+  <% @closed_games.sort_by { |g| g.name }.each do |g| %>
+  <% if g.is_public? %>
+  <li><a href="/game/<%= g.id %>/detail"><%= g.name %></a> </li>  
+  <% end %>
+  <% end %>
+  </ul>
+  
+  

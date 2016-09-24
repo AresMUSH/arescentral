@@ -1,0 +1,49 @@
+<% @game = @view_data[:game] %>
+<h2><%= @game.name %></h2>
+
+<% if @game.public_game %>
+
+  <p> <%= @markdown.render(@game.description) %></p>
+
+<hr/>
+
+  <h3>Status</h3>
+
+
+  <p><%= format_status @game.status %> </p>
+  <p><%= @game.name %> last checked in with AresCentral on <%= @game.last_ping %></p>
+
+<hr/>
+
+<h3>Game Info</h3>
+  
+  <p><b>Category:</b> <%= @game.category %></p>
+    
+  <% if !@game.host.blank? %>
+  <p><b>Address:</b> <%= @game.host %>:<%= @game.port %></p>
+  <% end %>
+  
+  <% if !@game.website.blank? %>
+  <p><b>Game Website:</b> <a href="<%= @game.website %>"><%= @game.website %></a></p>
+  <% end %>
+    
+  <% if !@game.description.blank? %>
+<hr/>
+
+ 
+  <% end %>
+  
+  
+  <h3>Characters</h3>
+  
+  <ul>
+  <% @game.linked_chars.each do |c| %>
+     <li><%= c.name %> (<a href="/handle/<%= c.handle.id %>/detail">@<%= c.handle.name %></a>)</li>
+  <% end %>
+  </ul>
+
+
+
+<% else %>
+   <p>This game is not open to the public.</p>
+<% end %>
