@@ -20,7 +20,7 @@ class WebApp
   end
   
   # input: game_id, char_id, char_name
-  # output: autospace, timezone, 
+  # output: autospace, timezone, quote_color
   post "/api/handle/:handle_id/sync" do
     handler = ApiHandleSyncCmd.new(params, session, self, @view_data)
     handler.handle  

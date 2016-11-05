@@ -41,6 +41,7 @@ class ApiHandleSyncCmd
       linked: true,
       autospace: handle.autospace, 
       timezone: handle.timezone,
+      quote_color: handle.quote_color,
       friends: handle.friends.map { |f| f.name }
     }
     
