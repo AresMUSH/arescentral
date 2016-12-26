@@ -7,7 +7,7 @@ class ApiHandleSyncCmd
   end
   
   def handle
-    [:game_id, :handle_id, :char_name, :char_id].each do |param|
+    [:game_id, :api_key, :handle_id, :char_name, :char_id].each do |param|
       return { status: "failure", error: "Missing #{param}." }.to_json if !@params[param]
     end
     
@@ -40,6 +40,8 @@ class ApiHandleSyncCmd
     data = {
       linked: true,
       autospace: handle.autospace, 
+      page_autospace: handle.page_autospace,
+      page_color: handle.page_color,
       timezone: handle.timezone,
       quote_color: handle.quote_color,
       friends: handle.friends.map { |f| f.name }

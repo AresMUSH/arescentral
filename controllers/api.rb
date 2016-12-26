@@ -1,6 +1,6 @@
 class WebApp  
   
-  # input: handle_name, char_name, char_id, game_id, link_code
+  # input: handle_name, char_name, char_id, game_id, api_key, link_code
   # output: handle_name, handle_id
   post "/api/handle/link" do
     handler = ApiHandleLinkCmd.new(params, session, self, @view_data)
@@ -19,10 +19,17 @@ class WebApp
     handler.handle  
   end
   
-  # input: game_id, char_id, char_name
-  # output: autospace, timezone, quote_color
+  # input: game_id, api_key, char_id, char_name
+  # output: autospace, timezone, quote_color, page_autospace, page_color
   post "/api/handle/:handle_id/sync" do
     handler = ApiHandleSyncCmd.new(params, session, self, @view_data)
+    handler.handle  
+  end
+  
+  # input: game_id, api_key, char_id, password
+  # output: matched
+  post "/api/handle/:handle_id/reset_password" do
+    handler = ApiResetCharPasswordCmd.new(params, session, self, @view_data)
     handler.handle  
   end
   

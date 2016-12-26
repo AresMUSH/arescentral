@@ -62,4 +62,9 @@ class WebApp
    handler = PostHandleDeleteCharCmd.new(params, session, self, @view_data)
    handler.handle
  end
+ 
+ post "/handle/:handle_id/char/reset_password", :auth => :user do
+   handler = PostHandleCharResetPasswordCmd.new(params, session, self, @view_data)
+   handler.handle
+ end
 end

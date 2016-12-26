@@ -10,6 +10,11 @@
         <input type="hidden" name="char_id" value="<%= c.id %>">
         <input type="submit" value="Unlink">        
     </form>
+    
+    <form method="POST" action="/handle/<%= @handle.id %>/char/reset_password">
+        <input type="hidden" name="char_id" value="<%= c.id %>">
+        <input type="submit" value="Reset Password">        
+    </form>
   </p>
   <hr/>
   <% end %>

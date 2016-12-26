@@ -5,6 +5,8 @@ class Handle
   field :name, :type => String
   field :name_upcase, :type => String
   field :autospace, :type => String, :default => "%r"
+  field :page_autospace, :type => String, :default => "%r"
+  field :page_color, :type => String, :default => "%xb"
   field :quote_color, :type => String, :default => ""
   field :timezone, :type => String, :default => "America/New_York"
   field :password_hash, :type => String
@@ -40,6 +42,8 @@ class Handle
   
   def update_from(params)
     self.autospace = params[:autospace]
+    self.page_autospace = params[:page_autospace]
+    self.page_color = params[:page_color]
     self.quote_color = params[:quote_color]
     self.timezone = params[:timezone]
     self.image_url = params[:image_url]

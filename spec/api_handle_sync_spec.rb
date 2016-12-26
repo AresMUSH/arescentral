@@ -76,6 +76,8 @@ describe ApiHandleSyncCmd do
     link.should_receive(:name=).with("Harvey")
     link.should_receive(:save!) 
     handle.should_receive(:autospace) { "a" }
+    handle.should_receive(:page_autospace) { "pa" }
+    handle.should_receive(:page_color) { "pc" }
     handle.should_receive(:quote_color) { "q" }
     handle.should_receive(:timezone) { "tz" }
     f1.stub(:name) { "F1" }
@@ -89,6 +91,8 @@ describe ApiHandleSyncCmd do
     response["status"].should eq "success"
     response["data"]["linked"].should eq true
     response["data"]["autospace"].should eq "a"
+    response["data"]["page_autospace"].should eq "pa"
+    response["data"]["page_color"].should eq "pc"
     response["data"]["quote_color"].should eq "q"
     response["data"]["timezone"].should eq "tz"
     response["data"]["friends"].should eq [ "F1", "F2" ]

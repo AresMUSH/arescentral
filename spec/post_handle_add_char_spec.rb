@@ -33,6 +33,7 @@ describe PostHandleAddCharCmd do
 
     OwnerChecker.should_receive(:check).with(@server, handle) { true }    
 
+    handle.stub(:name) { "Bob" }
     handle.stub(:link_codes) { codes }
     handle.should_receive(:save!)
     HandleFinder.should_receive(:find).with(123, @server) { handle }      
