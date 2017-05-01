@@ -16,8 +16,7 @@ class Handle
   field :security_question, :type => String
   field :link_codes, :type => Array, :default => []
 
-  field :password_entry, :type => String
-  field :password_confirmation, :type => String
+  attr_accessor :password_entry, :password_confirmation
   
   has_many :linked_chars
   has_many :friendships
@@ -26,14 +25,14 @@ class Handle
   
   validates_presence_of :name
   validates_presence_of :timezone
-  validates_format_of :name, with: /\A[a-z0-9\-\_]+\z/i, message: "%{value} seems wrong"
+  validates_format_of :name, with: /\A[A-Z][A-Za-z0-9]+\z/, message: "%{value} must start with a capital letter and contain only letters and numbers"
   validates_uniqueness_of :email, if: 'email.present?'
   validates_uniqueness_of :name
   
   validate :validate_password_entry, on: :create
   
   def create_from(params)
-    self.name = params[:name].capitalize
+    self.name = params[:name]
     self.password_entry = params[:password]
     self.password_confirmation = params[:confirm_password]
     self.email = params[:email]
