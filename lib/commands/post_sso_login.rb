@@ -19,6 +19,12 @@ class PostSsoLoginCmd
         return
       end
       
+      if (handle.forum_banned)
+        @server.show_flash :error, "Your forum privileges have been revoked.  Contact the AresCentral admin if you believe that to be a mistake."
+        @server.redirect_to "/"
+        return
+      end
+      
       secret = Config.forum_secret
       sso = SingleSignOn.parse(@session['sso'], secret)
       sso.email = handle.email
