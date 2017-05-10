@@ -30,7 +30,7 @@ class WebApp < Sinatra::Base
     end
   end
 
-  attr_accessor :view_data, :user
+  attr_accessor :view_data, :user, :sso
   
   helpers do
     def is_user?

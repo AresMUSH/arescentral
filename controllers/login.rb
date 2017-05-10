@@ -31,6 +31,20 @@ class WebApp < Sinatra::Base
     erb :'login/change-password', :layout => :default
   end
   
+  post "/sso/login" do
+    if (!session['sso'])
+      redirect to('/')
+    else
+      handler = PostSsoLoginCmd.new(params, session, self, self.view_data)
+      handler.handle
+    end
+  end
+  
+  get "/sso" do
+    session['sso'] = request.query_string
+    erb :'login/sso_login', :layout => :default    
+  end
+  
   post "/change-password", :auth => :user do
     handler = PostChangePasswordCmd.new(params, session, self, self.view_data)
     handler.handle

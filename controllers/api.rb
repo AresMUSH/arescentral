@@ -45,7 +45,7 @@ class WebApp
     handler = ApiGameUpdateCmd.new(params, session, self, @view_data)
     handler.handle
   end
-  
+
   post "/api/test" do
   end  
 end
