@@ -9,7 +9,6 @@
 
   <h3>Status</h3>
 
-
   <p><%= format_status @game.status %> </p>
   <p><%= @game.name %> last checked in with AresCentral on <%= @game.last_ping %></p>
 
@@ -32,6 +31,31 @@
 
  
   <% end %>
+  
+  <h3>Activity</h3>
+  <p>Average logins over the last couple weeks at different time periods.</p>
+  <p><i class="fa fa-square"></i> = 5 players, <i class="fa fa-square-o"></i> = 1-4 players</p>
+    
+    <table class="table table-bordered ">
+       <tr>
+        <th>&nbsp;</th>
+         <% Game.activity_times.each_with_index do |time, time_index| %>
+            <th><%= time %></th>
+         <% end %>
+       <tr>
+     <% Game.activity_days.each_with_index do |day, day_index| %>
+        <tr>
+          <td><%= day %></td>
+        <% Game.activity_times.each_with_index do |time, time_index| %>
+          <td>              
+              
+              <%= (@game.average_logins(day_index, time_index)/5).times.collect { |x| "<i class=\"fa fa-square\"></i>" }.join.html_safe %><% if (@game.average_logins(day_index, time_index)%5) > 0 %><i class="fa fa-square-o"></i><% end %>
+              </td>
+        <% end %>
+        </tr>
+    <% end %>
+
+    </table>
   
   
   <h3>Characters</h3>

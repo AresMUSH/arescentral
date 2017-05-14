@@ -90,7 +90,7 @@ class SingleSignOn
      payload[k] = val
     end
 
-    @custom_fields&.each do |k, v|
+    @custom_fields.each do |k, v|
       payload["custom.#{k}"] = v.to_s
     end
 

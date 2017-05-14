@@ -15,6 +15,7 @@ class Game
   field :public_game, :type => Boolean, :default => false
   field :last_ping, :type => Time, :default => Time.now
   field :is_open, :type => Boolean, :default => true
+  field :activity, :type => Hash, :default => {}
   
   has_many :linked_chars, :order => :name.asc
   
@@ -30,6 +31,7 @@ class Game
     self.category = params[:category]
     self.website = params[:website]
     self.public_game = params[:public_game]
+    self.activity = JSON.parse(params[:activity])
   end
   
   def address
@@ -42,6 +44,14 @@ class Game
     "Unknown"
   end
   
+  def average_logins(day, time)
+    day_samples = self.activity[day.to_s] || {}
+    samples = day_samples[time.to_s] || [ 0 ]
+                
+    total = samples.inject(:+)
+    (total / samples.count.to_f).round
+  end
+  
   def error_str
     str = ""
     errors.full_messages.each { |e| str << " #{e}. " }
@@ -50,5 +60,13 @@ class Game
   
   def is_public?
     public_game
+  end
+  
+  def self.activity_days
+    [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]
+  end
+  
+  def self.activity_times
+    [ '12-3am', '4-7am', '8-11am', '12-3pm', '4-7pm', '8-11pm']
   end
 end
