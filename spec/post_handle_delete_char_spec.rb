@@ -37,7 +37,7 @@ describe PostHandleDeleteCharCmd do
     @handler.handle
   end
   
-  it "should create link code if everything ok" do
+  it "should remove link and add to past chars if everything ok" do
     handle = double
     link = double
     params = { handle_id: 123, char_id: "234" }
@@ -46,7 +46,38 @@ describe PostHandleDeleteCharCmd do
     OwnerChecker.should_receive(:check).with(@server, handle) { true }    
 
     handle.stub(:linked_chars) { [ link ] }
+    handle.stub(:past_links) { ["Foo@Bar"] }
     link.stub(:id) { 234 }
+    link.stub(:display_name) { "Bob@A Game" }
+    
+    handle.should_receive(:past_links=).with(["Foo@Bar", "Bob@A Game"])
+    handle.should_receive(:save!)
+    
+    link.should_receive(:destroy!)
+    HandleFinder.should_receive(:find).with(123, @server) { handle }      
+    
+    @server.should_receive(:show_flash).with(:notice, "Character unlinked.")
+    @server.should_receive(:redirect_to).with('/handle/123/edit')
+    
+    @handler.handle       
+  end 
+  
+  it "should not add past char if already in list" do
+    handle = double
+    link = double
+    params = { handle_id: 123, char_id: "234" }
+    @handler = PostHandleDeleteCharCmd.new(params, @session, @server, @view_data)
+
+    OwnerChecker.should_receive(:check).with(@server, handle) { true }    
+
+    handle.stub(:linked_chars) { [ link ] }
+    handle.stub(:past_links) { ["Bob@A Game"] }
+    link.stub(:id) { 234 }
+    link.stub(:display_name) { "Bob@A Game" }
+    
+    handle.should_not_receive(:past_links=)
+    handle.should_not_receive(:save!)
+    
     link.should_receive(:destroy!)
     HandleFinder.should_receive(:find).with(123, @server) { handle }      
     

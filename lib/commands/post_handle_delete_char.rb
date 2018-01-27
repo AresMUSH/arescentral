@@ -21,6 +21,13 @@ class PostHandleDeleteCharCmd
        return
      end
      
+     past_links = handle.past_links || []
+     if (!past_links.include?(char.display_name))
+       past_links << char.display_name
+       handle.past_links = past_links
+       handle.save!
+     end
+     
     char.destroy!
     
     @server.show_flash :notice, "Character unlinked."

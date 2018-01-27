@@ -19,6 +19,16 @@
     </li>
   <% end %>
   </ul>
+  
+  <h3>Past Characters</h3>
+  
+  <ul>
+  <% @handle.past_links.sort_by { |c| c }.each do |c| %>
+    <li>
+    <%= c %>
+    </li>
+  <% end %>
+  </ul>
 
   <h3>Friends</h3>
   

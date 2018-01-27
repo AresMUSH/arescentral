@@ -16,6 +16,7 @@ class Handle
   field :security_question, :type => String
   field :link_codes, :type => Array, :default => []
   field :forum_banned, :type => Boolean, :default => false
+  field :past_links, :type => Array, :default => []
 
   attr_accessor :password_entry, :password_confirmation
   

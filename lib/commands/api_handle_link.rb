@@ -39,8 +39,19 @@ class ApiHandleLinkCmd
     
     handle.link_codes.delete code
     handle.save!
+
+    old_link = LinkedChar.where(char_id: char_id, game_id: game.id).first
+    if (old_link)
+      old_handle = old_link.handle
+      past_links = old_handle.past_links || []
+      past_links << old_link.display_name
+      old_handle.past_links = past_links
+      old_handle.save!
+      old_link.destroy!
+    end
     
     LinkedChar.create(name: char_name, game: game, handle: handle, char_id: char_id)
+    
     
     { status: "success", data: { handle_id: handle.id.to_s, handle_name: handle.name } }.to_json
   end

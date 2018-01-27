@@ -7,6 +7,7 @@ class GetHandleDetailCmd
   end
   
   def handle
+    
     if (@params[:handle_id])
       handle = HandleFinder.find(@params[:handle_id], @server)
     else

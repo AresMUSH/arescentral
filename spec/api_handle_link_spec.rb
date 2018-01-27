@@ -74,14 +74,15 @@ describe ApiHandleLinkCmd do
     response["status"].should eq "failure"
     response["error"].should eq "That character is already linked."
   end  
-  
-  it "should create a link and remove the link code if all is well" do
+    
+  it "should be okay if handle linked to different char on same game" do
     handle = double
     game = double
     link = double
     codes = [ 111, 222 ]    
     @handler = ApiHandleLinkCmd.new({ handle_name: "Star", game_id: 234, api_key: 888, link_code: 111, char_id: 123, char_name: "Harvey" }, @session, @server, @view_data)
     
+    LinkedChar.stub(:where) { [] }
     Handle.should_receive(:find_by_name).with("Star") { [handle] }
     Game.should_receive(:find).with(234) { game }
     handle.stub(:link_codes) { codes }
@@ -91,6 +92,28 @@ describe ApiHandleLinkCmd do
     handle.stub(:name) { "Star" }
     handle.stub(:id) { 123 }
     game.stub(:api_key) { 888 }
+    game.stub(:id) { 234 }
+    handle.should_receive(:save!) 
+    LinkedChar.should_receive(:create).with(name: "Harvey", handle: handle, game: game, char_id: 123)
+    
+    JSON.parse(@handler.handle)
+  end 
+  
+  it "should create a link and remove the link code if all is well" do
+    handle = double
+    game = double
+    codes = [ 111, 222 ]    
+    @handler = ApiHandleLinkCmd.new({ handle_name: "Star", game_id: 234, api_key: 888, link_code: 111, char_id: 123, char_name: "Harvey" }, @session, @server, @view_data)
+    
+    LinkedChar.stub(:where) { [] }
+    Handle.should_receive(:find_by_name).with("Star") { [handle] }
+    Game.should_receive(:find).with(234) { game }
+    handle.stub(:link_codes) { codes }
+    handle.stub(:linked_chars) { [] }
+    handle.stub(:name) { "Star" }
+    handle.stub(:id) { 123 }
+    game.stub(:api_key) { 888 }
+    game.stub(:id) { 234 }
     handle.should_receive(:save!) 
     LinkedChar.should_receive(:create).with(name: "Harvey", handle: handle, game: game, char_id: 123)
     
@@ -103,6 +126,43 @@ describe ApiHandleLinkCmd do
         
     codes.should eq [ 222 ]
 
+    
+  end 
+  
+  it "should delete old link to a different handle if one exists" do
+    handle = double
+    game = double
+    codes = [ 111, 222 ]    
+    @handler = ApiHandleLinkCmd.new({ handle_name: "Star", game_id: 234, api_key: 888, link_code: 111, char_id: 123, char_name: "Harvey" }, @session, @server, @view_data)
+    
+    Handle.should_receive(:find_by_name).with("Star") { [handle] }
+    Game.should_receive(:find).with(234) { game }
+    handle.stub(:link_codes) { codes }
+    handle.stub(:linked_chars) { [] }
+    handle.stub(:name) { "Star" }
+    handle.stub(:id) { 123 }
+    game.stub(:api_key) { 888 }
+    game.stub(:name) { "A Game" }
+    game.stub(:id) { 234 }
+    handle.should_receive(:save!) 
+    old_link = double
+    old_handle = double    
+    old_link.stub(:handle) { old_handle }
+    old_handle.stub(:past_links) { nil }
+    old_link.stub(:display_name) { "Harvey@A Game" }
+    
+    LinkedChar.should_receive(:create).with(name: "Harvey", handle: handle, game: game, char_id: 123)
+    
+    LinkedChar.should_receive(:where).with(char_id: 123, game_id: 234) { [ old_link ] } 
+    
+    old_handle.should_receive(:past_links=).with(["Harvey@A Game"])
+    old_handle.should_receive(:save!)
+    old_link.should_receive(:destroy!)
+      
+    response = JSON.parse(@handler.handle)
+
+    response["status"].should eq "success"
+   
     
   end 
 end

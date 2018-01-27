@@ -60,12 +60,16 @@
   
   <h3>Characters</h3>
   
+  <% @game.linked_chars.group_by { |c| c.handle }.sort_by { |h, c| h.name }.each do |handle, chars| %>
+  <p><b><a href="/handle/<%= handle.id %>/detail">@<%= handle.name %></a></b></p>
+  
   <ul>
-  <% @game.linked_chars.each do |c| %>
-     <li><%= c.name %> (<a href="/handle/<%= c.handle.id %>/detail">@<%= c.handle.name %></a>)</li>
-  <% end %>
+      <% chars.each do |c|%>
+        <li><%= c.name %></li>
+      <% end %>
   </ul>
-
+  <% end %>
+  
 
 
 <% else %>
