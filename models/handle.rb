@@ -27,7 +27,7 @@ class Handle
   
   validates_presence_of :name
   validates_presence_of :timezone
-  validates_format_of :name, with: /\A[A-Z][A-Za-z0-9]+\z/, message: "%{value} must start with a capital letter and contain only letters and numbers"
+  validates_format_of :name, with: /\A[A-Z][A-Za-z0-9]+\z/, message: "%{value} must start with a capital letter, be at least two characters long, and contain only letters and numbers"
   validates_uniqueness_of :email, if: 'email.present?'
   validates_uniqueness_of :name
   
