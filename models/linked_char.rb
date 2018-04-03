@@ -10,4 +10,8 @@ class LinkedChar
   def display_name
     "#{name}@#{game.name}"
   end
+  
+  def public_char?
+    self.game.public_game
+  end
 end

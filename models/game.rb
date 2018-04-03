@@ -5,6 +5,10 @@ class Game
     ["Historical", "Sci-Fi", "Fantasy", "Modern", "Supernatural", "Social", "Other"]
   end
   
+  def self.statuses
+    [ 'In Development', 'Beta', 'Open', 'Closed', 'Sandbox' ]
+  end
+  
   field :name, :type => String
   field :description, :type => String
   field :host, :type => String
@@ -14,14 +18,15 @@ class Game
   field :api_key, :type => String, :default => SecureRandom.uuid
   field :public_game, :type => Boolean, :default => false
   field :last_ping, :type => Time, :default => Time.now
-  field :is_open, :type => Boolean, :default => true
   field :activity, :type => Hash, :default => {}
+  field :status, :type => String
   
   has_many :linked_chars, :order => :name.asc
   
   validates_presence_of :name, :description, :category
   validates :category, inclusion: { in: Game.categories,
       message: "%{value} is not a valid category." }
+  validates :status, inclusion: { in: Game.statuses, message: "%{value} is not a valid status." }
 
   def update_from(params)
     self.name = params[:name]
@@ -31,15 +36,19 @@ class Game
     self.category = params[:category]
     self.website = params[:website]
     self.public_game = params[:public_game]
+    self.status = params[:status] || "In Development"
     self.activity = JSON.parse(params[:activity])
+  end
+  
+  def is_open
+    self.status != "Closed"
   end
   
   def address
     self.website ? self.website : "telnet://#{host}:#{port}"
   end
   
-  def status
-    return "Closed" if !self.is_open
+  def up_status
     return "Up" if (Time.now - self.last_ping) < 72.hours
     "Unknown"
   end

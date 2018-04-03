@@ -1,0 +1,20 @@
+    <table  class="table table-striped">
+    <tr>
+        <th>Game</th>
+        <th>Address</th>
+        <th>Status</th>
+        <th>ID</th>
+        <th>Last Check-In</th>
+    </tr>
+  <% @games.each do |g| %>
+  <tr>
+      <td><a href="/game/<%= g.id %>/detail"><%= g.name %></a> </td>
+      <td><a href="<%= g.address %>"><%= g.address %></a> </td>
+      <td><%= format_game_status g.status %> <%= format_up_status(g.up_status) %></td>
+      <td><%= g.id %></td>
+      <td><%= g.last_ping %></td>
+  </tr>
+  <% end %>
+  
+  
+  </table>

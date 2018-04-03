@@ -17,6 +17,7 @@ class Handle
   field :link_codes, :type => Array, :default => []
   field :forum_banned, :type => Boolean, :default => false
   field :past_links, :type => Array, :default => []
+  field :is_admin, :type => Boolean, :default => false
 
   attr_accessor :password_entry, :password_confirmation
   
@@ -55,6 +56,10 @@ class Handle
 
   def friends
     friendships.map { |f| f.friend }
+  end
+  
+  def public_chars
+    linked_chars.select { |c| c.public_char? }
   end
   
   def error_str

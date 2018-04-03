@@ -13,7 +13,7 @@
   <h3>Characters</h3>
   
   <ul>
-  <% @handle.linked_chars.sort_by { |c| c.game.name }.each do |c| %>
+  <% @handle.public_chars.sort_by { |c| c.game.name }.each do |c| %>
     <li>
     <%= c.name %>@<a href="/game/<%= c.game.id %>/detail"><%= c.game.name %></a>
     </li>

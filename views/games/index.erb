@@ -13,7 +13,7 @@
       <td><a href="/game/<%= g.id %>/detail"><%= g.name %></a> </td>
       <td><%= g.category %> </td>
       <td><a href="<%= g.address %>"><%= g.address %></a> </td>
-      <td><%= format_status(g.status) %></td>
+      <td><%= format_game_status g.status %> <%= format_up_status(g.up_status) %></td>
   </tr>
   <% end %>
   <% end %>
@@ -35,3 +35,7 @@
   </ul>
   
   
+<% if @user.is_admin %>
+<hr/>
+<a href="/games/admin">[ Admin View ] </a>
+<% end %>

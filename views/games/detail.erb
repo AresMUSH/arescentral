@@ -1,7 +1,7 @@
 <% @game = @view_data[:game] %>
 <h2><%= @game.name %></h2>
 
-<% if @game.public_game %>
+<% if @game.public_game || @user.is_admin %>
 
   <p> <%= @markdown.render(@game.description) %></p>
 
@@ -9,8 +9,8 @@
 
   <h3>Status</h3>
 
-  <p><%= format_status @game.status %> </p>
-  <p><%= @game.name %> last checked in with AresCentral on <%= @game.last_ping %></p>
+  <p><%= format_game_status @game.status %></p>
+  <p><%= format_up_status @game.up_status %> <%= @game.name %> last checked in with AresCentral on <%= @game.last_ping %></p>
 
 <hr/>
 
@@ -74,4 +74,12 @@
 
 <% else %>
    <p>This game is not open to the public.</p>
+<% end %>
+
+<% if @user.is_admin %>
+<hr/>
+  <form method="POST" action="/game/<%= @game.id %>/delete">
+      <input type="hidden" name="game_id" value="<%= @game.id %>">
+      <input type="submit" value="Delete">        
+  </form>
 <% end %>
