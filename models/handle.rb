@@ -54,6 +54,16 @@ class Handle
     self.security_question = params[:security_question]
   end
 
+  def add_past_link(link)
+    return if !link.game.is_public?
+    if (!self.past_links)
+      self.past_links = []
+    end
+    display_name = link.display_name
+    return if self.past_links.include?(display_name)
+    self.past_links << display_name
+  end
+  
   def friends
     friendships.map { |f| f.friend }
   end

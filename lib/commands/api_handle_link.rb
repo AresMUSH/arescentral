@@ -43,9 +43,7 @@ class ApiHandleLinkCmd
     old_link = LinkedChar.where(char_id: char_id, game_id: game.id).first
     if (old_link)
       old_handle = old_link.handle
-      past_links = old_handle.past_links || []
-      past_links << old_link.display_name
-      old_handle.past_links = past_links
+      old_handle.add_past_link(old_link)
       old_handle.save!
       old_link.destroy!
     end

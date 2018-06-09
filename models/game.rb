@@ -23,6 +23,8 @@ class Game
   
   has_many :linked_chars, :order => :name.asc
   
+  before_destroy :delete_links
+  
   validates_presence_of :name, :description, :category
   validates :category, inclusion: { in: Game.categories,
       message: "%{value} is not a valid category." }
@@ -77,5 +79,13 @@ class Game
   
   def self.activity_times
     [ '12-3am', '4-7am', '8-11am', '12-3pm', '4-7pm', '8-11pm']
+  end
+  
+  def delete_links
+    self.linked_chars.each do |c|
+      c.handle.add_past_link(c)
+      c.handle.save!
+      c.destroy!
+    end
   end
 end

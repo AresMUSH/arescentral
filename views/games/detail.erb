@@ -1,7 +1,7 @@
 <% @game = @view_data[:game] %>
 <h2><%= @game.name %></h2>
 
-<% if @game.public_game || @user.is_admin %>
+<% if @game.public_game || (@user && @user.is_admin) %>
 
   <p> <%= @markdown.render(@game.description) %></p>
 
@@ -76,7 +76,7 @@
    <p>This game is not open to the public.</p>
 <% end %>
 
-<% if @user.is_admin %>
+<% if (@user && @user.is_admin) %>
 <hr/>
   <form method="POST" action="/game/<%= @game.id %>/delete">
       <input type="hidden" name="game_id" value="<%= @game.id %>">

@@ -148,14 +148,11 @@ describe ApiHandleLinkCmd do
     old_link = double
     old_handle = double    
     old_link.stub(:handle) { old_handle }
-    old_handle.stub(:past_links) { nil }
-    old_link.stub(:display_name) { "Harvey@A Game" }
-    
+
     LinkedChar.should_receive(:create).with(name: "Harvey", handle: handle, game: game, char_id: 123)
-    
     LinkedChar.should_receive(:where).with(char_id: 123, game_id: 234) { [ old_link ] } 
     
-    old_handle.should_receive(:past_links=).with(["Harvey@A Game"])
+    old_handle.should_receive(:add_past_link).with(old_link)
     old_handle.should_receive(:save!)
     old_link.should_receive(:destroy!)
       

@@ -1,1 +1,1 @@
-thin restart -C thin.yml
+bundle exec thin restart -C thin.yml

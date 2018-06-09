@@ -10,7 +10,7 @@
   <tr>
       <td><a href="/game/<%= g.id %>/detail"><%= g.name %></a> </td>
       <td><a href="<%= g.address %>"><%= g.address %></a> </td>
-      <td><%= format_game_status g.status %> <%= format_up_status(g.up_status) %></td>
+      <td><%= format_game_status g.status %> <%= format_privacy(g.public_game) %> <%= format_up_status(g.up_status) %></td>
       <td><%= g.id %></td>
       <td><%= g.last_ping %></td>
   </tr>

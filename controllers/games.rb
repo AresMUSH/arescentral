@@ -13,6 +13,22 @@ class WebApp
       "<span class='label label-#{label_class}'>#{status}</span>"
     end
     
+    def format_privacy(*args)
+      status = args[0]
+      case status
+      when false
+        label_class = "default"
+        label_text = "Private"
+      when true
+        label_class = "primary"
+        label_text = "Public"
+      else
+        label_class = "warning"
+        label_text = "Unknown"
+      end
+      "<span class='label label-#{label_class}'>#{label_text}</span>"
+    end
+    
     def format_game_status(*args)
       status = args[0]
       case status
@@ -24,6 +40,9 @@ class WebApp
         label_class = "warning"
       when "Closed"
         label_class = "danger"
+      else
+        status = "Unknown"
+        label_class = "info"
       end
       "<span class='label label-#{label_class}'>#{status}</span>"
     end
@@ -31,8 +50,8 @@ class WebApp
   
   
    get "/games" do
-    @open_games = Game.where(is_open: true)
-    @closed_games = Game.where(is_open: false)
+    @open_games = Game.where(public_game: true)
+    @closed_games = Game.where(public_game: false)
     
     erb :"games/index", :layout => :default
    end

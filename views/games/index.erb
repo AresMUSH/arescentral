@@ -35,7 +35,7 @@
   </ul>
   
   
-<% if @user.is_admin %>
+<% if (@user && @user.is_admin) %>
 <hr/>
 <a href="/games/admin">[ Admin View ] </a>
 <% end %>
