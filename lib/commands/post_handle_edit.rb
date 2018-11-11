@@ -13,7 +13,7 @@ class PostHandleEditCmd
     return if !OwnerChecker.check(@server, handle)
     
     handle.update_from @params
-    
+
     if (!handle.valid?)        
       @server.show_flash :error, handle.error_str
       @server.redirect_to "/handle/#{handle_id}/edit"

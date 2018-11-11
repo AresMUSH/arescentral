@@ -6,7 +6,7 @@ class Game
   end
   
   def self.statuses
-    [ 'In Development', 'Beta', 'Open', 'Closed', 'Sandbox' ]
+    [ 'In Development', 'Alpha', 'Beta', 'Open', 'Closed', 'Sandbox' ]
   end
   
   field :name, :type => String
@@ -42,7 +42,7 @@ class Game
     self.activity = JSON.parse(params[:activity])
   end
   
-  def is_open
+  def is_open?
     self.status != "Closed"
   end
   
@@ -51,7 +51,9 @@ class Game
   end
   
   def up_status
-    return "Up" if (Time.now - self.last_ping) < 72.hours
+    time_since_ping = (Time.now - self.last_ping)
+    return "Up" if time_since_ping < 72.hours
+    return "Down" if time_since_ping > 14.days
     "Unknown"
   end
   

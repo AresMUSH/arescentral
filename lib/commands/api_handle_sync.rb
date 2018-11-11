@@ -44,7 +44,8 @@ class ApiHandleSyncCmd
       page_color: handle.page_color,
       timezone: handle.timezone,
       quote_color: handle.quote_color,
-      friends: handle.friends.map { |f| f.name }
+      friends: handle.friends.map { |f| f.name },
+      ascii_only: handle.ascii_only
     }
     
     { status: "success", data: data }.to_json

@@ -20,7 +20,7 @@ class WebApp
   end
   
   # input: game_id, api_key, char_id, char_name
-  # output: autospace, timezone, quote_color, page_autospace, page_color
+  # output: autospace, timezone, quote_color, page_autospace, page_color, ascii_only
   post "/api/handle/:handle_id/sync" do
     handler = ApiHandleSyncCmd.new(params, session, self, @view_data)
     handler.handle  
@@ -46,6 +46,13 @@ class WebApp
     handler.handle
   end
 
+  #post "/api/resetpassword" do
+  #  handle = HandleFinder.find_by_name(params[:name], self)
+  #  password = handle.reset_password
+  #  handle.save!
+  #  password    
+  #end
+  
   post "/api/test" do
   end  
 end

@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rack', '~> 1.5'
-gem 'sinatra', '>= 1.4.7'
+gem 'sinatra', '>= 1.4.8'
 gem 'thin', "~> 1.7.0"
 gem 'mongoid', "~> 5.1.4"
 gem 'bcrypt', "~> 3.1.10"

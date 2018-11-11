@@ -18,6 +18,7 @@ class Handle
   field :forum_banned, :type => Boolean, :default => false
   field :past_links, :type => Array, :default => []
   field :is_admin, :type => Boolean, :default => false
+  field :ascii_only, :type => Boolean, :default => false
 
   attr_accessor :password_entry, :password_confirmation
   
@@ -52,6 +53,7 @@ class Handle
     self.profile = params[:profile]
     self.email = params[:email]
     self.security_question = params[:security_question]
+    self.ascii_only = params[:ascii_only] == "on" ? true : false
   end
 
   def add_past_link(link)
@@ -95,6 +97,12 @@ class Handle
   
   def hash_password(password)
     BCrypt::Password.create(password)
+  end
+  
+  def reset_password
+    temp_password = (0...8).map { (65 + rand(26)).chr }.join
+    self.change_password temp_password
+    temp_password
   end
   
   def serializable_hash(options={})

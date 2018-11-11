@@ -32,7 +32,7 @@ class WebApp
     def format_game_status(*args)
       status = args[0]
       case status
-      when "In Development", "Beta"
+      when "In Development", "Beta", "Alpha"
         label_class = "info"
       when "Open"
         label_class = "success"
@@ -50,8 +50,9 @@ class WebApp
   
   
    get "/games" do
-    @open_games = Game.where(public_game: true)
-    @closed_games = Game.where(public_game: false)
+    public_games = Game.where(public_game: true)
+    @open_games = public_games.select { |g| g.is_open? }
+    @closed_games = public_games.select { |g| !g.is_open? }
     
     erb :"games/index", :layout => :default
    end
