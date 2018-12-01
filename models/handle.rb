@@ -6,7 +6,7 @@ class Handle
   field :name_upcase, :type => String
   field :autospace, :type => String, :default => "%r"
   field :page_autospace, :type => String, :default => "%r"
-  field :page_color, :type => String, :default => "%xb"
+  field :page_color, :type => String, :default => "%xg"
   field :quote_color, :type => String, :default => ""
   field :timezone, :type => String, :default => "America/New_York"
   field :password_hash, :type => String
