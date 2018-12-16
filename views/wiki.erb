@@ -1,0 +1,13 @@
+<p>Here you can find archives from the web portals of old Ares games.</p>
+
+<div class="alert alert-info">If you are the owner of a closed Ares game, <a href="https://www.aresmush.com/contact">contact Faraday</a> to get instructions for archiving your portal here.</div>
+
+<ul>
+  
+  <% @closed_games.sort_by { |g| g.name }.each do |g| %>
+    <% if g.wiki_archive %>
+    <li><a href="/wiki/<%= g.wiki_archive %>"><%= g.name %></li>
+    <% end %>
+  <% end %>
+  
+</ul>

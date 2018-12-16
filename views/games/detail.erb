@@ -23,14 +23,15 @@
   <% end %>
   
   <% if !@game.website.blank? %>
-  <p><b>Game Website:</b> <a href="<%= @game.website %>"><%= @game.website %></a></p>
+      <p><b>Game Website:</b> <a href="<%= @game.website %>"><%= @game.website %></a></p>
   <% end %>
-    
-  <% if !@game.description.blank? %>
-<hr/>
 
- 
+  <% if @game.wiki_archive %>
+    <p>This game's web portal is available in the <a href="/wiki/<%= @game.wiki_archive %>">archive</a>.</p>
   <% end %>
+  
+  
+  <hr/>
   
   <h3>Activity</h3>
   <p>Average logins over the last couple weeks at different time periods.</p>

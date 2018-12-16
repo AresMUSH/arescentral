@@ -26,6 +26,7 @@ require 'controllers/handles'
 require 'controllers/games'
 require 'controllers/login'
 require 'controllers/api'
+require 'controllers/wiki'
 
 require 'lib/helpers/admin_checker'
 require 'lib/helpers/config'

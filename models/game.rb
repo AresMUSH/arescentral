@@ -20,6 +20,7 @@ class Game
   field :last_ping, :type => Time, :default => Time.now
   field :activity, :type => Hash, :default => {}
   field :status, :type => String
+  field :wiki_archive, :type => String
   
   has_many :linked_chars, :order => :name.asc
   
