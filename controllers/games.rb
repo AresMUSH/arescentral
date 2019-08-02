@@ -73,7 +73,7 @@ class WebApp
        redirect_to '/games'
      end
      
-    @games = Game.all.sort_by { |g| [g.address, g.name, g.last_ping] }  
+    @games = Game.all.sort_by { |g| [g.name, g.address, g.last_ping] }  
     erb :"games/admin", :layout => :default
    end
   

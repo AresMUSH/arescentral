@@ -13,9 +13,9 @@ class PostSsoLoginCmd
     handle = Handle.where(name_upcase: user.upcase).first
     if (handle && handle.compare_password(pw))
 
-      if (!handle.email)
-        @server.show_flash :error, "You cannot access the forums without an email."
-        @server.redirect_to "/sso?#{@session['sso']}"
+      if (handle.email.blank?)
+        @server.show_flash :error, "You must set an email on your handle account to access the forums.  The forum uses email registration to prevent spam.  Log in and go to 'My Account' if you want to set up an email."
+        @server.redirect_to "/"
         return
       end
       

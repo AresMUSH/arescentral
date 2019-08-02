@@ -6,6 +6,7 @@
         <th>Category</th>
         <th>Address</th>
         <th>Status</th>
+        <th>Up</td>
     </tr>
   <% @open_games.sort_by { |g| g.category }.each do |g| %>
   <% if g.is_public? %>
@@ -13,7 +14,8 @@
       <td><a href="/game/<%= g.id %>/detail"><%= g.name %></a> </td>
       <td><%= g.category %> </td>
       <td><a href="<%= g.address %>"><%= g.address %></a> </td>
-      <td><%= format_game_status g.status %> <%= format_up_status(g.up_status) %></td>
+      <td><%= format_game_status g.status %></td>
+      <td><%= format_up_status(g.up_status) %></td>
   </tr>
   <% end %>
   <% end %>
