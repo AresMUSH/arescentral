@@ -81,6 +81,7 @@ describe ApiHandleSyncCmd do
     handle.should_receive(:quote_color) { "q" }
     handle.should_receive(:timezone) { "tz" }
     handle.should_receive(:ascii_only) { true }
+    handle.should_receive(:screen_reader) { true }
     f1.stub(:name) { "F1" }
     f2.stub(:name) { "F2" }
     game.stub(:api_key) { 888 }
@@ -98,5 +99,6 @@ describe ApiHandleSyncCmd do
     response["data"]["timezone"].should eq "tz"
     response["data"]["friends"].should eq [ "F1", "F2" ]
     response["data"]["ascii_only"].should eq true
+    response["data"]["screen_reader"].should eq true
   end 
 end

@@ -14,6 +14,7 @@ class Handle
   field :image_url, :type => String
   field :email, :type => String
   field :security_question, :type => String
+  field :screen_reader, :type => Boolean, :default => false
   field :link_codes, :type => Array, :default => []
   field :forum_banned, :type => Boolean, :default => false
   field :past_links, :type => Array, :default => []
@@ -54,6 +55,7 @@ class Handle
     self.email = params[:email]
     self.security_question = params[:security_question]
     self.ascii_only = params[:ascii_only] == "on" ? true : false
+    self.screen_reader = params[:screen_reader] == "on" ? true : false
   end
 
   def add_past_link(link)

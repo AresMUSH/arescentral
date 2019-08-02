@@ -7,6 +7,23 @@
 
 <hr/>
 
+
+<% if @game.wiki_archive %>
+<div class="alert alert-warning">
+  
+  <h4>Archived!</h4>
+
+  <p><b>This game has closed.</b></p>
+
+  <p>A partial archive of the web portal is available in the <a href="/wiki/<%= @game.wiki_archive %>">archive</a>.</p>
+  
+  </div>
+
+<hr>
+
+<% end %>
+  
+  
   <h3>Status</h3>
 
   <p><%= format_game_status @game.status %></p>
@@ -14,6 +31,7 @@
 
 <hr/>
 
+  
 <h3>Game Info</h3>
   
   <p><b>Category:</b> <%= @game.category %></p>
@@ -26,13 +44,9 @@
       <p><b>Game Website:</b> <a href="<%= @game.website %>"><%= @game.website %></a></p>
   <% end %>
 
-  <% if @game.wiki_archive %>
-    <p>This game's web portal is available in the <a href="/wiki/<%= @game.wiki_archive %>">archive</a>.</p>
-  <% end %>
-  
-  
   <hr/>
   
+<% if !@game.wiki_archive %>
   <h3>Activity</h3>
   <p>Average logins over the last couple weeks at different time periods.</p>
   <p><i class="fa fa-square"></i> = 5 players, <i class="fa fa-square-o"></i> = 1-4 players</p>
@@ -57,7 +71,7 @@
     <% end %>
 
     </table>
-  
+<% end %>
   
   <h3>Characters</h3>
   
