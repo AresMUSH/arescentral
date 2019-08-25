@@ -21,7 +21,8 @@ class Game
   field :activity, :type => Hash, :default => {}
   field :status, :type => String
   field :wiki_archive, :type => String
-  
+
+  has_many :past_chars, :order => :name.asc
   has_many :linked_chars, :order => :name.asc
   
   before_destroy :delete_links
@@ -56,6 +57,13 @@ class Game
     return "Up" if time_since_ping < 72.hours
     return "Down" if time_since_ping > 14.days
     "Unknown"
+  end
+
+  def can_view_game?(handle)
+    return true if self.public_game
+    return false if !handle
+    return true if handle.is_admin
+    return handle.linked_chars.any? { |h| h.game == self }
   end
   
   def average_logins(day, time)

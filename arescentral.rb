@@ -19,6 +19,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), *%w[.]))
 require 'models/friendship'
 require 'models/handle'
 require 'models/linked_char'
+require 'models/past_char'
 require 'models/game'
 
 require 'controllers/app'

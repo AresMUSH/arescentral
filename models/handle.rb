@@ -24,6 +24,7 @@ class Handle
   attr_accessor :password_entry, :password_confirmation
   
   has_many :linked_chars
+  has_many :past_chars
   has_many :friendships
   
   before_validation :save_upcase_name
@@ -59,13 +60,7 @@ class Handle
   end
 
   def add_past_link(link)
-    return if !link.game.is_public?
-    if (!self.past_links)
-      self.past_links = []
-    end
-    display_name = link.display_name
-    return if self.past_links.include?(display_name)
-    self.past_links << display_name
+    PastChar.create(name: link.name, handle: self, game: link.game)
   end
   
   def friends

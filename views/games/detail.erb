@@ -1,7 +1,7 @@
 <% @game = @view_data[:game] %>
 <h2><%= @game.name %></h2>
 
-<% if @game.public_game || (@user && @user.is_admin) %>
+<% if @game.can_view_game?(@user) %>
 
   <p> <%= @markdown.render(@game.description) %></p>
 
@@ -73,18 +73,34 @@
     </table>
 <% end %>
   
-  <h3>Characters</h3>
+  <h3>Players</h3>
   
-  <% @game.linked_chars.group_by { |c| c.handle }.sort_by { |h, c| h.name }.each do |handle, chars| %>
-  <p><b><a href="/handle/<%= handle.id %>/detail">@<%= handle.name %></a></b></p>
+  <table class='table table-striped'>    
+    <% @game.linked_chars.group_by { |c| c.handle }.sort_by { |h, c| h.name }.each do |handle, chars| %>
+    <tr>
+      <td><b><a href="/handle/<%= handle.id %>/detail">@<%= handle.name %></a></b></td>
+      <td>
+            <% chars.each do |c|%>
+              <%= c.name %>
+            <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
   
-  <ul>
-      <% chars.each do |c|%>
-        <li><%= c.name %></li>
-      <% end %>
-  </ul>
-  <% end %>
-  
+  <h3>Past Handle Characters</h3>
+  <table class='table table-striped'>    
+    <% @game.past_chars.group_by { |c| c.handle }.sort_by { |h, c| h.name }.each do |handle, chars| %>
+    <tr>
+      <td><b><a href="/handle/<%= handle.id %>/detail">@<%= handle.name %></a></b></td>
+      <td>
+            <% chars.each do |c|%>
+              <%= c.name %>
+            <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 
 
 <% else %>
