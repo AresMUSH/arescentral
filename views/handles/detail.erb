@@ -13,7 +13,7 @@
   <h3>Characters</h3>
   
   <ul>
-  <% @handle.public_chars.sort_by { |c| c.game.name }.each do |c| %>
+  <% @handle.linked_chars.select { |c| c.visible_to?(@user) }.sort_by { |c| c.game.name }.each do |c| %>
     <li>
     <%= c.name %>@<a href="/game/<%= c.game.id %>/detail"><%= c.game.name %></a>
     </li>
@@ -23,7 +23,7 @@
   <h3>Past Characters</h3>
   
   <ul>
-  <% @handle.past_chars.sort_by { |c| c.game.name }.each do |c| %>
+  <% @handle.past_chars.select { |c| c.visible_to?(@user) }.sort_by { |c| c.game.name }.each do |c| %>
     <li>
     <%= c.name %>@<a href="/game/<%= c.game.id %>/detail"><%= c.game.name %></a>
     </li>

@@ -12,4 +12,13 @@ class PastChar
   def public_char?
     self.game.public_game
   end
+  
+  def visible_to?(handle)
+    return true if self.public_char?
+    return false if !handle
+    return true if handle.is_admin
+    return true if handle == self.handle
+    return handle.has_char_on_game?(self.game)
+  end
+  
 end

@@ -63,7 +63,7 @@ class Game
     return true if self.public_game
     return false if !handle
     return true if handle.is_admin
-    return handle.linked_chars.any? { |h| h.game == self }
+    return handle.has_char_on_game?(self)
   end
   
   def average_logins(day, time)

@@ -70,6 +70,10 @@ class Handle
   def public_chars
     linked_chars.select { |c| c.public_char? }
   end
+    
+  def has_char_on_game?(game)
+    self.linked_chars.any? { |h| h.game == game }
+  end
   
   def error_str
     str = ""
