@@ -70,6 +70,15 @@ class Handle
   def public_chars
     linked_chars.select { |c| c.public_char? }
   end
+  
+  def current_chars(viewer)
+    self.linked_chars.select { |c| c.visible_to?(viewer) && c.game.is_open? }
+  end
+  
+  def old_chars(viewer)
+    list = self.linked_chars.select { |c| c.visible_to?(viewer) && !c.game.is_open? }
+    list.concat self.past_chars.select { |c| c.visible_to?(viewer) }
+  end
     
   def has_char_on_game?(game)
     self.linked_chars.any? { |h| h.game == game }
