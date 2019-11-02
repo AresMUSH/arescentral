@@ -10,7 +10,7 @@ class PastChar
   end
   
   def public_char?
-    self.game.public_game
+    self.game && self.game.public_game
   end
   
   def visible_to?(handle)

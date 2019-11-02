@@ -32,12 +32,12 @@ class WebApp
     def format_game_status(*args)
       status = args[0]
       case status
-      when "In Development", "Beta", "Alpha"
+      when "In Development", "Sandbox"
+        label_class = "default"
+      when "Beta", "Alpha"
         label_class = "info"
       when "Open"
         label_class = "success"
-      when "Sandbox"
-        label_class = "warning"
       when "Closed"
         label_class = "danger"
       else

@@ -1,22 +1,21 @@
-
 class WebApp < Sinatra::Base
   register Sinatra::Flash
   register Sinatra::CrossOrigin
   
   configure do    
+    use Rack::Session::Cookie # Use this instead of set :sessions => true to avoid post clearing session info.
     set :port, 9292
     set :threaded, false
     set :auth_keys, {}
     enable :cross_origin
-    set :sessions => true
     set :views, "#{settings.root}/../views"    
     set :static, true
     enable :logging
     set :public_folder, 'public'
     
     file = File.new("#{settings.root}/sinatra.log", 'a+')
-      file.sync = true
-      use Rack::CommonLogger, file
+    file.sync = true
+    use Rack::CommonLogger, file
   end
       
   register do
@@ -63,7 +62,7 @@ class WebApp < Sinatra::Base
   end
 
   get '/' do
-     erb :index, :layout => :default
+    erb :index, :layout => :default
   end
   
 end

@@ -81,6 +81,7 @@ class Handle
   end
     
   def has_char_on_game?(game)
+    return false if !game
     self.linked_chars.any? { |h| h.game == game }
   end
   

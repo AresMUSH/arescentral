@@ -2,7 +2,7 @@ class Game
   include Mongoid::Document
   
   def self.categories
-    ["Historical", "Sci-Fi", "Fantasy", "Modern", "Supernatural", "Social", "Other"]
+    ["Historical", "Sci-Fi", "Fantasy", "Modern", "Supernatural", "Social", "Comic", "Other"]
   end
   
   def self.statuses
