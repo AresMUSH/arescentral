@@ -48,8 +48,35 @@ class Game
     self.status != "Closed"
   end
   
+  def activity_points
+    points = 0
+    self.activity.each do |day, times|
+      times.each do |time, samples|
+        total = samples.inject(:+)
+        avg = (total / samples.count.to_f).round
+        
+        if (avg >= 5)
+          points = points + 1
+        end
+      end
+    end
+    points
+  end
+  
+  def activity_rating
+    [(self.activity_points / 10.0).ceil, 4].min
+  end
+  
   def address
-    self.website ? self.website : "telnet://#{host}:#{port}"
+    if (self.website.blank?)
+      "http://#{host}"
+    else
+      if (self.website.start_with?("http"))
+        self.website
+      else
+        "http://#{self.website}"
+      end
+    end
   end
   
   def up_status
