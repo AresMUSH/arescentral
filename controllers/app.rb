@@ -2,8 +2,9 @@ class WebApp < Sinatra::Base
   register Sinatra::Flash
   register Sinatra::CrossOrigin
   
-  configure do    
-    use Rack::Session::Cookie # Use this instead of set :sessions => true to avoid post clearing session info.
+  configure do
+    session_secret = File.read('session_secret.txt')
+    use Rack::Session::Cookie, secret: session_secret # Use this instead of set :sessions => true to avoid post clearing session info.
     set :port, 9292
     set :threaded, false
     set :auth_keys, {}
@@ -29,7 +30,7 @@ class WebApp < Sinatra::Base
     end
   end
 
-  attr_accessor :view_data, :user, :sso
+  attr_accessor :view_data, :user, :sso, :ip_addr
   
   helpers do
     def is_user?
@@ -57,7 +58,12 @@ class WebApp < Sinatra::Base
   
   before do
     user_id = session[:user_id]
+    @ip_addr = request.ip
     @user = user_id ? Handle.find(user_id) : nil
+    if (@user)
+      @user.last_ip = @ip_addr
+      @user.save!
+    end
     @view_data = {}
   end
 

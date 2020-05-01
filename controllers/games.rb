@@ -57,8 +57,8 @@ class WebApp
     erb :"games/index", :layout => :default
    end
    
-   post "/game/:game_id/delete" do
-     handler = PostDeleteGameCmd.new(params, session, self, @view_data)
+   post "/game/:game_id/change_status" do
+     handler = PostChangeGameStatusCmd.new(params, session, self, @view_data)
      handler.handle
    end
    

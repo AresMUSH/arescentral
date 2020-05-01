@@ -2,6 +2,12 @@
 
   <h2><%= @handle.name %></h2>
   
+  <% if @handle.forum_banned %>
+  <div class="alert alert-danger">
+    This player has been banned from the AresMUSH forums.
+  </div>
+  <% end %>
+  
   <% if !@handle.image_url.blank? %>
       <a href="<%= @handle.image_url %>"><img src="<%= @handle.image_url %>" class="profile-image"/></a>
   <% end %>
@@ -29,3 +35,16 @@
     </li>
   <% end %>
   </ul>
+  
+
+  <% if (@user && @user.is_admin) %>
+  <hr/>   
+
+  <div class="alert alert-danger">
+    <form method="POST" action="/handle/<%= @handle.id %>/change_status">
+        <input type="hidden" name="handle_id" value="<%= @handle.id %>">
+        <input type="hidden" name="status" value="Ban">
+        <input type="submit" value="Ban">        
+    </form>
+  </div>
+  <% end %>

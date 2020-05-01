@@ -5,3 +5,6 @@ db.yml
 todo/*
 Gemfile.lock
 config.rb
+session_secret.txt
+blacklist.txt
+banned.txt

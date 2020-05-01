@@ -1,12 +1,12 @@
-<p>Here you can find archives from the web portals of old Ares games.</p>
+<p>Using the <a href="https://aresmush.com/tutorials/manage/web-archive.html">wiki export</a> feature, game admins can make a static HTML archive of the web portal for closed Ares games.  You can ZIP this up and put it on a file sharing service (like dropbox, box.net, mozilla file share or others) for your players to download.  Contact Faraday to have your archive linked here.</p>
 
-<div class="alert alert-info">If you are the owner of a closed Ares game, <a href="https://www.aresmush.com/contact">contact Faraday</a> to get instructions for archiving your portal here.</div>
+<p>To view an archive, just unzip the files on your local PC and then open "index.html" in your web browser. You can then browse the files offline.</p>
 
 <ul>
   
   <% @closed_games.sort_by { |g| g.name }.each do |g| %>
     <% if g.wiki_archive %>
-    <li><a href="/wiki/<%= g.wiki_archive %>"><%= g.name %></li>
+    <li><a href="<%= g.wiki_archive %>"><%= g.name %></li>
     <% end %>
   <% end %>
   

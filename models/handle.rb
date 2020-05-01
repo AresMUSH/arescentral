@@ -20,6 +20,7 @@ class Handle
   field :past_links, :type => Array, :default => []
   field :is_admin, :type => Boolean, :default => false
   field :ascii_only, :type => Boolean, :default => false
+  field :last_ip
 
   attr_accessor :password_entry, :password_confirmation
   

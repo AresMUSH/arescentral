@@ -55,7 +55,9 @@ class Game
         total = samples.inject(:+)
         avg = (total / samples.count.to_f).round
         
-        if (avg >= 5)
+        if (avg >= 10)
+          points = points + 2
+        elsif (avg >= 5)
           points = points + 1
         end
       end
@@ -64,7 +66,7 @@ class Game
   end
   
   def activity_rating
-    [(self.activity_points / 10.0).ceil, 4].min
+    [(self.activity_points / 20.0).ceil, 4].min
   end
   
   def address

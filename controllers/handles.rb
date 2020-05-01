@@ -67,4 +67,10 @@ class WebApp
    handler = PostHandleCharResetPasswordCmd.new(params, session, self, @view_data)
    handler.handle
  end
+ 
+ post "/handle/:handle_id/change_status" do
+   handler = PostChangeHandleStatus.new(params, session, self, @view_data)
+   handler.handle
+ end
+ 
 end

@@ -15,7 +15,7 @@
 
   <p><b>This game has closed.</b></p>
 
-  <p>A partial archive of the web portal is available in the <a href="/wiki/<%= @game.wiki_archive %>">archive</a>.</p>
+  <p>A partial archive of the web portal is available in the <a href="/wiki">archive</a>.</p>
   
   </div>
 
@@ -48,8 +48,8 @@
   
 <% if !@game.wiki_archive %>
   <h3>Activity</h3>
-  <p>Average logins over the last couple weeks at different time periods.</p>
-  <p><i class="fa fa-square"></i> = 5 players, <i class="fa fa-square-o"></i> = 1-4 players</p>
+  <p>Average logins over the last couple weeks at different time periods.  All times are listed in EST.</p>
+  <p><i class="fa fa-star"></i> = 5 players, <i class="fa fa-star-half"></i> = 1-4 players</p>
     
     <table class="table table-bordered ">
        <tr>
@@ -64,7 +64,10 @@
         <% Game.activity_times.each_with_index do |time, time_index| %>
           <td>              
               
-              <%= (@game.average_logins(day_index, time_index)/5).times.collect { |x| "<i class=\"fa fa-square\"></i>" }.join.html_safe %><% if (@game.average_logins(day_index, time_index)%5) > 0 %><i class="fa fa-square-o"></i><% end %>
+              <%= (@game.average_logins(day_index, time_index) / 5).times.collect { |x| "<i class=\"fa fa-star\"></i>" }.join.html_safe %>
+              <% if (@game.average_logins(day_index, time_index) % 5) > 0 %>
+                <i class="fa fa-star-half"></i>
+              <% end %>
               </td>
         <% end %>
         </tr>
@@ -109,8 +112,24 @@
 
 <% if (@user && @user.is_admin) %>
 <hr/>
-  <form method="POST" action="/game/<%= @game.id %>/delete">
+
+  <form method="POST" action="/game/<%= @game.id %>/change_status">
       <input type="hidden" name="game_id" value="<%= @game.id %>">
-      <input type="submit" value="Delete">        
+      <input type="hidden" name="status" value="Close">
+      <input type="submit" value="Close">        
   </form>
+
+  <form method="POST" action="/game/<%= @game.id %>/change_status">
+      <input type="hidden" name="game_id" value="<%= @game.id %>">
+      <input type="hidden" name="status" value="Private">
+      <input type="submit" value="Private">        
+  </form>
+
+  <div class="alert alert-danger">
+    <form method="POST" action="/game/<%= @game.id %>/change_status">
+        <input type="hidden" name="game_id" value="<%= @game.id %>">
+        <input type="hidden" name="status" value="Delete">
+        <input type="submit" value="Delete">        
+    </form>
+  </div>
 <% end %>
