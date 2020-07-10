@@ -26,6 +26,13 @@ class WebApp
     handler.handle  
   end
   
+  # input: game_id, api_key, char_id, char_name
+  # output: nothing
+  post "/api/handle/:handle_id/unlink" do
+    handler = ApiHandleUnlinkCmd.new(params, session, self, @view_data)
+    handler.handle  
+  end
+  
   # input: game_id, api_key, char_id, password
   # output: matched
   post "/api/handle/:handle_id/reset_password" do
@@ -46,6 +53,11 @@ class WebApp
     handler.handle
   end
 
+  #get "/api/games" do
+  #  Game.all.to_json
+  #end
+  
+  
   #post "/api/resetpassword" do
   #  handle = HandleFinder.find_by_name(params[:name], self)
   #  password = handle.reset_password

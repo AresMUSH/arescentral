@@ -4,7 +4,7 @@
 
   <% @handle.linked_chars.sort_by { |c| c.game.name }.each do |c| %>
   <p>
-    <%= c.display_name %> 
+    <%= c.name %>@<a href="/game/<%= c.game.id %>/detail"><%= c.game.name %></a>
     
     <form method="POST" action="/handle/<%= @handle.id %>/char/delete">
         <input type="hidden" name="char_id" value="<%= c.id %>">
