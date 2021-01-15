@@ -46,7 +46,8 @@ class ApiHandleSyncCmd
       quote_color: handle.quote_color,
       friends: handle.friends.map { |f| f.name },
       ascii_only: handle.ascii_only,
-      screen_reader: handle.screen_reader
+      screen_reader: handle.screen_reader,
+      profile: handle.profile
     }
     
     { status: "success", data: data }.to_json

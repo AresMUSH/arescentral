@@ -48,6 +48,10 @@ class Game
     self.status != "Closed"
   end
   
+  def is_in_dev?
+    self.status == "In Development"
+  end
+  
   def activity_points
     points = 0
     self.activity.each do |day, times|
@@ -66,7 +70,18 @@ class Game
   end
   
   def activity_rating
-    [(self.activity_points / 20.0).ceil, 4].min
+    if (self.activity_points >= 80)
+      return 4
+    elsif (self.activity_points >= 60)
+      return 3
+    elsif (self.activity_points >= 30)
+      return 2
+    elsif (self.activity_points >= 15)
+      return 1
+    else
+      return 0
+    end
+    #[(self.activity_points / 20.0).floor, 4].min
   end
   
   def address

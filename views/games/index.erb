@@ -1,4 +1,6 @@
 <p>The AresMUSH games directory lists all public games running AresMUSH.</p>
+
+<h2>Open Games</h2>
     
     <table  class="table table-striped">
     <tr>
@@ -31,8 +33,6 @@
   <% end %>
   <% end %>
   
-  
-  
 </table>
 
 <ul>
@@ -41,9 +41,45 @@
   <li>Up - Reflects whether the game has checked in with AresCentral recently.</li>
 </ul>
 
+<h2>Games In Development</h2>
+
+    <table  class="table table-striped">
+    <tr>
+        <th>Game</th>
+        <th>Category</th>
+        <th>Address</th>
+        <th>Activity</th>
+        <th>Status</th>
+        <th>Up</td>
+    </tr>
+  <% @dev_games.sort_by { |g| g.category }.each do |g| %>
+  <% if g.is_public? %>
+  <tr>
+      <td><a href="/game/<%= g.id %>/detail"><%= g.name %></a></td>
+      <td><%= g.category %> </td>
+      <td><a href="<%= g.address %>"><%= g.address %></a> </td>
+      <td>
+        <% g.activity_rating.times.each do |n| %>
+        <i class="fa fa-star"></i> 
+        <% end %>
+
+        <% if (@user && @user.is_admin) %>
+        <%= g.activity_points %>
+        <% end %>
+
+      </td>
+      <td><%= format_game_status g.status %></td>
+      <td><%= format_up_status(g.up_status) %></td>
+  </tr>
+  <% end %>
+  <% end %>
+  
+  
+  
+</table>
 
   
-  <b>Closed Games</b>
+  <h2>Closed Games</h2>
   
   <ul>
   <% @closed_games.sort_by { |g| g.name }.each do |g| %>

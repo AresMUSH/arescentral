@@ -34,8 +34,10 @@ class WebApp
       case status
       when "In Development", "Sandbox"
         label_class = "default"
-      when "Beta", "Alpha"
+      when "Beta"
         label_class = "info"
+      when "Alpha"
+        label_class = "warning"
       when "Open"
         label_class = "success"
       when "Closed"
@@ -51,7 +53,8 @@ class WebApp
   
    get "/games" do
     public_games = Game.where(public_game: true)
-    @open_games = public_games.select { |g| g.is_open? }
+    @open_games = public_games.select { |g| g.is_open? && !g.is_in_dev?}
+    @dev_games = public_games.select { |g| g.is_in_dev? }
     @closed_games = public_games.select { |g| !g.is_open? }
     
     erb :"games/index", :layout => :default

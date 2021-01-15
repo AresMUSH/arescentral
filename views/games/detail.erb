@@ -128,7 +128,7 @@
   <div class="alert alert-danger">
     <form method="POST" action="/game/<%= @game.id %>/change_status">
         <input type="hidden" name="game_id" value="<%= @game.id %>">
-        <input type="hidden" name="status" value="Delete">
+        <input type="hidden" name="status" value="Destroy">
         <input type="submit" value="Delete">        
     </form>
   </div>
