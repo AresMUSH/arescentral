@@ -7,6 +7,12 @@ class ApiGameRegisterCmd
   end
   
   def handle
+    # A game with the same name, port, and host is surely the same game.
+    game = Game.where(name: @params[:name], host: @params[:host], port: @params[:port]).first
+    if (game)
+      return { status: "success", data: { game_id: game.id.to_s, api_key: game.api_key } }.to_json
+    end
+    
     game = Game.new
     game.update_from @params
     if (!game.valid?)

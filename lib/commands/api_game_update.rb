@@ -16,6 +16,7 @@ class ApiGameUpdateCmd
     if (game.api_key != @params[:api_key])
       return { status: "failure", error: "Invalid API key." }.to_json
     end
+
     game.update_from @params
     if (!game.valid?)
       return { status: "failure", error: game.error_str }.to_json
