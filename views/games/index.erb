@@ -18,9 +18,12 @@
       <td><%= g.category %> </td>
       <td><a href="<%= g.address %>"><%= g.address %></a> </td>
       <td>
-        <% g.activity_rating.times.each do |n| %>
+        <% (g.activity_rating - 1).times.each do |n| %>
         <i class="fa fa-star"></i> 
         <% end %>
+        <% if g.activity_rating == 1 %>
+        <i class="fa fa-star-half"></i> 
+        <% end %>        
 
         <% if (@user && @user.is_admin) %>
         <%= g.activity_points %>
@@ -59,10 +62,14 @@
       <td><%= g.category %> </td>
       <td><a href="<%= g.address %>"><%= g.address %></a> </td>
       <td>
-        <% g.activity_rating.times.each do |n| %>
+        <% (g.activity_rating - 1).times.each do |n| %>
         <i class="fa fa-star"></i> 
-        <% end %>
+        <% end %>        
+        <% if g.activity_rating == 1 %>
+        <i class="fa fa-star-half"></i> 
+        <% end %>        
 
+        
         <% if (@user && @user.is_admin) %>
         <%= g.activity_points %>
         <% end %>

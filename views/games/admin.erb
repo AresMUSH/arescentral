@@ -25,8 +25,8 @@
   
 <ul>
   <li><%= @games.count %> total games</li>
-  <li><%= @games.select { |g| g.public_game && g.is_open? && !g.is_in_dev? }.count %> games open to public</li>
-  <li><%= @games.select { |g| g.public_game && g.is_open? && g.is_in_dev? && g.up_status == "Up" }.count %> games in public dev</li>
-  <li><%= @games.select { |g| !g.public_game && g.up_status == "Up" }.count %> private games</li>
-  <li><%= @games.select { |g| !g.is_open? || g.up_status == "Down" }.count %> closed games</li>
+  <li><%= @games.select { |g| g.report_status == "open" }.count %> games open to public</li>
+  <li><%= @games.select { |g| g.report_status == "dev" }.count %> games in public dev</li>
+  <li><%= @games.select { |g| g.report_status == "private" }.count %> private games</li>
+  <li><%= @games.select { |g| g.report_status == "closed" }.count %> closed games</li>
 </ul>

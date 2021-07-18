@@ -52,11 +52,16 @@ class WebApp
     handler = ApiGameUpdateCmd.new(params, session, self, @view_data)
     handler.handle
   end
+  
+  # input: name
+  post "/api/plugins/register" do
+    handler = ApiPluginRegisterCmd.new(params, session, self, @view_data)
+    handler.handle     
+  end
 
   #get "/api/games" do
   #  Game.all.to_json
   #end
-  
   
   #post "/api/resetpassword" do
   #  handle = HandleFinder.find_by_name(params[:name], self)
@@ -64,6 +69,30 @@ class WebApp
   #  handle.save!
   #  password    
   #end
+
+  # post "/api/addplugin" do
+  #  fara = HandleFinder.find_by_name("Faraday", self)
+  #  clock = HandleFinder.find_by_name("Clockwork", self)
+  #  tat = HandleFinder.find_by_name("Tat", self)
+  #  Plugin.create(
+  #  name: "Weather",
+  #  key: "weather",
+  #  description: "Simple weather generator.",
+  #  url: "https://github.com/aresmush/ares-weather-plugin",
+  #  custom_code: "None",  # None / Minor / etc.
+  #  web_portal: "Full", # None / Partial / Full
+  #  category: "Building", # RP / Skills / Building / Community 
+  #  installs: 0,
+  #  handle: fara
+  #  )  
+  # end
+  
+  #post "/api/updateplugin" do
+  #  plugin = Plugin.where(name: "RP Preferences").first
+  #  plugin.installs = 0
+  #  plugin.save!
+  #  {}
+  #  end
   
   post "/api/test" do
     return ""

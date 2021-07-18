@@ -1,0 +1,49 @@
+<h2>Community Plugins</h2>
+
+<p>These community-contributed plugins can be added to your game.</p>
+
+<p>Click on the plugin name to view the plugin's details in GitHub. You can install plugins directly from the game using <code>plugin/install &lt;github url&gt;</code>. For example: <code>plugin/install https://github.com/AresMUSH/ares-prefs-plugin</code>.</p>
+  
+<div class="alert alert-info">
+<b>Note!</b> Be sure to check the README file in each plugin's for any additional installation/configuration steps. Use these plugins at your own risk. Community plugins are not officially supported (unless otherwise specified).
+</div>
+
+<p>See the <a href="https://aresmush.com/tutorials/code/contribs/" target="_blank" rel="noopener">AresMUSH submission guidelines</a> if you want to contribute your own plugins.</p>
+
+    
+<table  class="table table-striped">
+    <tr>
+        <th>Plugin</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Web</th>
+        <th>Code</th>
+        <th>Installs</th>
+    </tr>
+  <% @plugins.each do |p| %>
+  <tr>
+      <td><a href="<%= p.url %>" target="_blank" rel="noopener"><%= p.name %></a></td>
+      <td><%= p.category %> </td>
+      <td><%= p.description %> </td>
+      <td><a href="/handle/<%= p.author_name %>"><%= p.author_name %></a> </td>
+      <td>
+        <% if p.web_portal != "None" %>         
+        <i class="fas fa-globe"></i>
+        <% end %>
+      </td>
+      <td>
+        <% if p.custom_code != "None" %>         
+        <i class="fas fa-laptop-code"></i>
+        <% end %>
+      </td>
+      <td>
+        <%= p.installs %>
+      </td>
+  </tr>
+  <% end %>
+  
+</table>
+
+<p><i class="fas fa-globe"></i> - Web Portal Support Included</p>
+<p><i class="fas fa-laptop-code"></i> - Custom Code Required</p>

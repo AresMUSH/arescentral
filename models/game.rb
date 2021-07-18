@@ -63,6 +63,8 @@ class Game
           points = points + 2
         elsif (avg >= 5)
           points = points + 1
+        elsif (avg > 0)
+          points = points + 0.25
         end
       end
     end
@@ -70,13 +72,15 @@ class Game
   end
   
   def activity_rating
-    if (self.activity_points >= 80)
+    if (self.activity_points >= 70)
+      return 5
+    elsif (self.activity_points >= 50)
       return 4
-    elsif (self.activity_points >= 60)
-      return 3
     elsif (self.activity_points >= 30)
-      return 2
+      return 3
     elsif (self.activity_points >= 15)
+      return 2
+    elsif (self.activity_points > 0)
       return 1
     else
       return 0
@@ -103,6 +107,13 @@ class Game
     "Unknown"
   end
 
+  def report_status
+    return "closed" if !self.is_open? || self.up_status == "Down"
+    return "private" if !self.public_game
+    return "dev" if self.is_in_dev? 
+    return "open"
+  end
+  
   def can_view_game?(handle)
     return true if self.public_game
     return false if !handle
