@@ -63,38 +63,44 @@ class WebApp
   #  Game.all.to_json
   #end
   
-  #post "/api/resetpassword" do
-  #  handle = HandleFinder.find_by_name(params[:name], self)
-  #  password = handle.reset_password
-  #  handle.save!
-  #  password    
-  #end
+  post "/api/resetpassword" do
+    handle = HandleFinder.find_by_name(params[:name], self)
+    password = handle.reset_password
+    handle.save!
+    password  
+  end
 
-  # post "/api/addplugin" do
+  #post "/api/addplugin" do
   #  fara = HandleFinder.find_by_name("Faraday", self)
   #  clock = HandleFinder.find_by_name("Clockwork", self)
   #  tat = HandleFinder.find_by_name("Tat", self)
   #  Plugin.create(
-  #  name: "Weather",
-  #  key: "weather",
-  #  description: "Simple weather generator.",
-  #  url: "https://github.com/aresmush/ares-weather-plugin",
+  #  name: "Simple Innventory",
+  #  key: "simpleinventory",
+  #  description: "Simple inventory system.",
+  #  url: "https://github.com/spiritlake/ares-simpleinventory-plugin",
   #  custom_code: "None",  # None / Minor / etc.
-  #  web_portal: "Full", # None / Partial / Full
-  #  category: "Building", # RP / Skills / Building / Community 
+  #  web_portal: "Partial", # None / Partial / Full
+  #  category: "Systems", # RP / Skills / Building / Community 
   #  installs: 0,
-  #  handle: fara
+  #  handle: tat
   #  )  
   # end
   
   #post "/api/updateplugin" do
-  #  plugin = Plugin.where(name: "RP Preferences").first
-  #  plugin.installs = 0
+  #  plugin = Plugin.where(name: "Dice Roller").first
+  #  plugin.category = "Systems"
   #  plugin.save!
   #  {}
   #  end
   
+  #post "/api/updategame" do
+    #game = Game.where(id: "11111").first
+    #puts game.name
+    #game.status = "Closed"
+    #game.save!
+    #end  
+  
   post "/api/test" do
-    return ""
   end  
 end

@@ -1,23 +1,5 @@
 <% @handle = @view_data[:handle] %>
 
-<h2>Linked Characters</h2>
-
-  <% @handle.linked_chars.sort_by { |c| c.game.name }.each do |c| %>
-  <p>
-    <%= c.name %>@<a href="/game/<%= c.game.id %>/detail"><%= c.game.name %></a>
-    
-    <form method="POST" action="/handle/<%= @handle.id %>/char/delete">
-        <input type="hidden" name="char_id" value="<%= c.id %>">
-        <input type="submit" value="Unlink">        
-    </form>
-    
-    <form method="POST" action="/handle/<%= @handle.id %>/char/reset_password">
-        <input type="hidden" name="char_id" value="<%= c.id %>">
-        <input type="submit" value="Reset Password">        
-    </form>
-  </p>
-  <hr/>
-  <% end %>
 
 <h2>Link Codes</h2>
 
@@ -33,3 +15,30 @@
 <form method="POST" action="/handle/<%= @handle.id %>/char/add">
  <p> <input type="submit" value="Get A New Link Code"> </p>
 </form>
+
+
+<h2>Linked Characters</h2>
+
+  <% @handle.linked_chars.sort_by { |c| c.game.name }.each do |c| %>
+  <div class="row">
+    <div class="col col-xs-8">
+      <%= c.name %>@<a href="/game/<%= c.game.id %>/detail"><%= c.game.name %></a>
+    </div>
+    
+    <div class="col col-xs-2">
+      <form method="POST" action="/handle/<%= @handle.id %>/char/delete">
+          <input type="hidden" name="char_id" value="<%= c.id %>">
+          <input type="submit" value="Unlink">        
+      </form>
+    </div>
+    
+    <div class="col col-xs-2">    
+      <form method="POST" action="/handle/<%= @handle.id %>/char/reset_password">
+          <input type="hidden" name="char_id" value="<%= c.id %>">
+          <input type="submit" value="Reset Password">        
+      </form>
+    </div>
+  </div>
+    <hr/>
+  <% end %>
+

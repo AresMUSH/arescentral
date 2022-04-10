@@ -81,22 +81,12 @@
   <% end %>
   <% end %>
   
-  
-  
 </table>
 
-  
-  <h2>Closed Games</h2>
-  
-  <ul>
-  <% @closed_games.sort_by { |g| g.name }.each do |g| %>
-  <% if g.is_public? %>
-  <li><a href="/game/<%= g.id %>/detail"><%= g.name %></a> </li>  
-  <% end %>
-  <% end %>
-  </ul>
-  
-  
+<h2>Closed Games</h2>
+
+<p>Browse the <a href="/games/archive">archive</a> for closed AresMUSH games.</p>
+    
 <% if (@user && @user.is_admin) %>
 <hr/>
 <a href="/games/admin">[ Admin View ] </a>

@@ -55,7 +55,6 @@ class WebApp
     public_games = Game.where(public_game: true)
     @open_games = public_games.select { |g| g.is_open? && !g.is_in_dev?}
     @dev_games = public_games.select { |g| g.is_in_dev? }
-    @closed_games = public_games.select { |g| !g.is_open? }
     
     erb :"games/index", :layout => :default
    end
@@ -79,5 +78,11 @@ class WebApp
     @games = Game.all.sort_by { |g| [g.name, g.address, g.last_ping] }  
     erb :"games/admin", :layout => :default
    end
-  
+   
+   get "/games/archive" do
+     public_games = Game.where(public_game: true)
+     @closed_games = public_games.select { |g| !g.is_open? }
+     render_erb :"games/archive", :layout => :default
+   end
+   
 end
