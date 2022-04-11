@@ -63,12 +63,12 @@ class WebApp
   #  Game.all.to_json
   #end
   
-  post "/api/resetpassword" do
-    handle = HandleFinder.find_by_name(params[:name], self)
-    password = handle.reset_password
-    handle.save!
-    password  
-  end
+  #post "/api/resetpassword" do
+  #  handle = HandleFinder.find_by_name(params[:name], self)
+  #  password = handle.reset_password
+  #  handle.save!
+  #  password  
+  #end
 
   #post "/api/addplugin" do
   #  fara = HandleFinder.find_by_name("Faraday", self)
@@ -102,5 +102,8 @@ class WebApp
     #end  
   
   post "/api/test" do
+    handle = HandleFinder.find_by_name("TangerineButterfy", self)
+    handle.name = "TangerineButterfly"
+    handle.save!
   end  
 end
