@@ -71,4 +71,12 @@ class WebApp < Sinatra::Base
     erb :index, :layout => :default
   end
   
+  get "/api/home" do 
+    if (@user)
+      { user_id: @user.id, username: @user.name }
+    else
+      {}
+    end
+  end
+  
 end

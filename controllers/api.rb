@@ -1,5 +1,30 @@
 class WebApp  
   
+  get "/api/games" do
+    public_games = Game.where(public_game: true)
+    {
+      games: public_games.map { |g| g.directory_info }
+    }.to_json
+  end
+  
+  get "/api/games/directory" do
+    public_games = Game.where(public_game: true)
+    open_games = public_games.select { |g| g.is_open? && !g.is_in_dev?}
+    dev_games = public_games.select { |g| g.is_in_dev? }
+    
+    {
+      public: open_games.map { |g| g.directory_info },
+      dev: dev_games.map { |g| g.directory_info }
+    }.to_json
+  end
+  
+  get "/api/games/archive" do
+    public_games = Game.where(public_game: true)
+    closed_games = public_games.select { |g| !g.is_open? }
+    
+    closed_games.map { |g| g.directory_info }.to_json
+  end
+  
   # input: handle_name, char_name, char_id, game_id, api_key, link_code
   # output: handle_name, handle_id
   post "/api/handle/link" do

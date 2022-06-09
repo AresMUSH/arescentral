@@ -9,6 +9,22 @@ class Game
     [ 'In Development', 'Alpha', 'Beta', 'Open', 'Closed', 'Sandbox' ]
   end
   
+  def directory_info
+    {
+      name: self.name,
+      description: self.description,
+      host: self.host,
+      port: self.port,
+      category: self.category,
+      website: self.website,
+      last_ping: self.last_ping,
+      status: self.status,
+      last_ping: self.last_ping,
+      wiki_archive: self.wiki_archive,
+      id: self.id.to_s
+    }
+  end
+  
   field :name, :type => String
   field :description, :type => String
   field :host, :type => String
