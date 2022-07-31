@@ -2,7 +2,7 @@
 
 <div class="row">
   <% @handles.sort_by { |h| h.name }.each_with_index do |h, i| %>
-  <div class='col col-xs-4 col-sm-3'><a href="/handle/<%= h.name %>"><%= h.name %></a> </div>
+  <div class='col col-xs-6 col-sm-4'><a href="/handle/<%= h.name %>"><%= h.name %></a> </div>
   <% end %>
 </div>
 

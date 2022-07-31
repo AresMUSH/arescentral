@@ -39,12 +39,27 @@
 
   <% if (@user && @user.is_admin) %>
   <hr/>   
+  
+  <div class="panel panel-default">
+    
+    <div class="panel-heading">Admin Info</div>
+    
+    <div class="panel-body">
+      <p>Email: <%= @handle.email %></p>
 
-  <div class="alert alert-danger">
-    <form method="POST" action="/handle/<%= @handle.id %>/change_status">
-        <input type="hidden" name="handle_id" value="<%= @handle.id %>">
-        <input type="hidden" name="status" value="Ban">
-        <input type="submit" value="Ban">        
-    </form>
+      <p>Favorite MUSH: <%= @handle.security_question %></p>
+  
+
+      <div class="alert alert-danger">
+
+
+        <form method="POST" action="/handle/<%= @handle.id %>/change_status">
+            <input type="hidden" name="handle_id" value="<%= @handle.id %>">
+            <input type="hidden" name="status" value="Ban">
+            <input type="submit" value="Ban">        
+        </form>
+      </div>
+    </div>
   </div>
+  
   <% end %>

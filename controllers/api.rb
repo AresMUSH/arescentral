@@ -101,9 +101,7 @@ class WebApp
     #game.save!
     #end  
   
-  post "/api/test" do
-    handle = HandleFinder.find_by_name("TangerineButterfy", self)
-    handle.name = "TangerineButterfly"
-    handle.save!
-  end  
+  #post "/api/test" do
+  #  
+  #end  
 end
