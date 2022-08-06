@@ -21,12 +21,18 @@ class PostChangeHandleStatus
     when "Ban"
       handle.forum_banned = true
       handle.save!
+      @server.show_flash :info, "#{handle.name} banned."
+    when "ResetPw"
+      temp_password = Handle.random_password
+      handle.change_password(temp_password)
+      handle.save!
+      @server.show_flash :info, "Password reset to: #{temp_password}"
+      
     else
       @server.show_flash :error, "Invalid status."
       @server.redirect_to '/handles'
     end
     
-    @server.show_flash :info, "#{handle.name} status changed: #{status}."
     @server.redirect_to '/handles'
   end
 end

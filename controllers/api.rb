@@ -70,22 +70,23 @@ class WebApp
   #  password  
   #end
 
-  #post "/api/addplugin" do
-  #  fara = HandleFinder.find_by_name("Faraday", self)
-  #  clock = HandleFinder.find_by_name("Clockwork", self)
-  #  tat = HandleFinder.find_by_name("Tat", self)
-  #  Plugin.create(
-  #  name: "Simple Innventory",
-  #  key: "simpleinventory",
-  #  description: "Simple inventory system.",
-  #  url: "https://github.com/spiritlake/ares-simpleinventory-plugin",
-  #  custom_code: "None",  # None / Minor / etc.
-  #  web_portal: "Partial", # None / Partial / Full
-  #  category: "Systems", # RP / Skills / Building / Community 
-  #  installs: 0,
-  #  handle: tat
-  #  )  
-  # end
+#  post "/api/addplugin" do
+#    fara = HandleFinder.find_by_name("Faraday", self)
+#    clock = HandleFinder.find_by_name("Clockwork", self)
+#    tat = HandleFinder.find_by_name("Tat", self)
+#    lyanna = HandleFinder.find_by_name("Lyanna", self)
+#    Plugin.create(
+#    name: "Pendragon Traits",
+#    key: "pentraits",
+#    description: "Traits system for Pendragon RPG.",
+#    url: "https://github.com/cailleach1310/ares-pentraits-plugin",
+#    custom_code: "Minor",  # None / Minor / etc.
+#    web_portal: "Full", # None / Partial / Full
+#    category: "Skills", # RP / Skills / Building / Community 
+#    installs: 0,
+#    handle: lyanna
+#    )  
+#  end
   
   #post "/api/updateplugin" do
   #  plugin = Plugin.where(name: "Dice Roller").first
@@ -95,11 +96,11 @@ class WebApp
   #  end
   
   #post "/api/updategame" do
-    #game = Game.where(id: "11111").first
-    #puts game.name
-    #game.status = "Closed"
-    #game.save!
-    #end  
+  #  game = Game.where(id: "11111").first
+  #  puts game.name
+  #  game.status = "Closed"
+  #  game.save!
+  #end  
   
   #post "/api/test" do
   #  

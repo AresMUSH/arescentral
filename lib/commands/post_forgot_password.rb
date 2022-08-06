@@ -10,7 +10,7 @@ class PostForgotPasswordCmd
     handle = Handle.where(email: @params[:email]).first
     
     if (handle)
-      temp_password = (0...8).map { (65 + rand(26)).chr }.join
+      temp_password = Handle.random_password
       message = "Your password has been reset to: #{temp_password}.  Please log in and reset it."
     
       handle.change_password(temp_password)

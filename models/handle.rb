@@ -97,8 +97,7 @@ class Handle
     errors.add :password_entry, 'must be at least 6 characters' if (self.password_entry.length < 6)
     errors.add :password_entry, 'must match' if (self.password_entry != self.password_confirmation)
   end
-  
-    
+      
   def change_password(raw_password)
     self.password_hash = hash_password(raw_password)
   end
@@ -127,6 +126,11 @@ class Handle
   def self.find_by_name(name)
     Handle.where(name_upcase: name.upcase)
   end
+  
+  def self.random_password
+    (0...8).map { (65 + rand(26)).chr }.join
+  end
+  
   
   private
   def save_upcase_name

@@ -52,6 +52,11 @@
 
       <div class="alert alert-danger">
 
+        <form method="POST" action="/handle/<%= @handle.id %>/change_status">
+            <input type="hidden" name="handle_id" value="<%= @handle.id %>">
+            <input type="hidden" name="status" value="ResetPw">
+            <input type="submit" value="Reset Password">        
+        </form>
 
         <form method="POST" action="/handle/<%= @handle.id %>/change_status">
             <input type="hidden" name="handle_id" value="<%= @handle.id %>">
