@@ -70,23 +70,23 @@ class WebApp
   #  password  
   #end
 
-#  post "/api/addplugin" do
-#    fara = HandleFinder.find_by_name("Faraday", self)
-#    clock = HandleFinder.find_by_name("Clockwork", self)
-#    tat = HandleFinder.find_by_name("Tat", self)
-#    lyanna = HandleFinder.find_by_name("Lyanna", self)
-#    Plugin.create(
-#    name: "Pendragon Traits",
-#    key: "pentraits",
-#    description: "Traits system for Pendragon RPG.",
-#    url: "https://github.com/cailleach1310/ares-pentraits-plugin",
-#    custom_code: "Minor",  # None / Minor / etc.
-#    web_portal: "Full", # None / Partial / Full
-#    category: "Skills", # RP / Skills / Building / Community 
-#    installs: 0,
-#    handle: lyanna
-#    )  
-#  end
+  #post "/api/addplugin" do
+  #  #fara = HandleFinder.find_by_name("Faraday", self)
+  #  #clock = HandleFinder.find_by_name("Clockwork", self)
+  #  #tat = HandleFinder.find_by_name("Tat", self)
+  #  lyanna = HandleFinder.find_by_name("Lyanna", self)
+  #  Plugin.create(
+  #  name: "Economy",
+  #  key: "economy",
+  #  description: "Basic economy system.",
+  #  url: "https://github.com/cailleach1310/ares-economy-plugin",
+  #  custom_code: "Minor",  # None / Minor / etc.
+  #  web_portal: "Full", # None / Partial / Full
+  #  category: "System", # RP / Skills / Building / Community / System
+  #  installs: 0,
+  #  handle: lyanna
+  #  )  
+  #end
   
   #post "/api/updateplugin" do
   #  plugin = Plugin.where(name: "Dice Roller").first
@@ -102,7 +102,6 @@ class WebApp
   #  game.save!
   #end  
   
-  #post "/api/test" do
-  #  
+  #post "/api/test" do   
   #end  
 end

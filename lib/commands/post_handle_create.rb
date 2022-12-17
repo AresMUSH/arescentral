@@ -1,3 +1,14 @@
+class HttpConnector
+  def get(url)
+    uri = URI.parse(url)
+    opts = { open_timeout: 1, read_timeout: 1, use_ssl: uri.scheme == "https" }
+    Net::HTTP.start(uri.hostname, uri.port, opts ) do |http|
+      resp = http.request_get(uri.request_uri)
+      return resp
+    end
+  end
+end
+
 class PostHandleCreateCmd
   def initialize(params, session, server, view_data)
     @params = params
@@ -13,15 +24,23 @@ class PostHandleCreateCmd
       return
     end
     
-    blacklist = Net::HTTP.get('rhostmush.com', '/blacklist.txt')
-    if (blacklist)
-      blacklist = blacklist.split("\n").select { |b| b != "ip" && !b.empty? }
-      File.open('blacklist.txt', 'w') do |f|
-        f.puts blacklist.join("\n")
+    puts "Getting blacklist"
+
+    begin
+      blacklist = HttpConnector.get('http://rhostmush.com/blacklist.txt')
+      if (blacklist)
+        blacklist = blacklist.split("\n").select { |b| b != "ip" && !b.empty? }
+        File.open('blacklist.txt', 'w') do |f|
+          f.puts blacklist.join("\n")
+        end
       end
-    else 
-      blacklist = []
+    rescue Exception => ex
+      puts "Error reading blacklist from rhost.com."
     end
+    
+    puts "Checking for banned sites"
+    
+    blacklist = File.read('blacklist.txt').split("\n").select { |b| b != "ip" && !b.empty? }
     banned = File.read('banned.txt').split("\n").select { |b| b != "ip" && !b.empty? }
     ban_list = banned.concat(blacklist)
 
@@ -30,7 +49,7 @@ class PostHandleCreateCmd
       @server.redirect_to '/'
       return
     end
-        
+            
     handle = Handle.new
     handle.create_from(@params)
    

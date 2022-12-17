@@ -26,15 +26,17 @@ class Handle
   
   has_many :linked_chars
   has_many :past_chars
-  has_many :friendships
+  has_many :friendships, class_name: Friendship, inverse_of: :owner
+  has_many :friends_of, class_name: Friendship, inverse_of: :friend
   
   before_validation :save_upcase_name
   
   validates_presence_of :name
   validates_presence_of :timezone
   validates_format_of :name, with: /\A[A-Za-z0-9]+\z/, message: "%{value} must be at least two characters long, and contain only letters and numbers"
-  validates_uniqueness_of :email, if: 'email.present?'
-  validates_uniqueness_of :name
+  validates_length_of :name, minimum: 2, maximum: 20
+  validates_uniqueness_of :email, :allow_blank => true
+  validates_uniqueness_of :name_upcase
   
   validate :validate_password_entry, on: :create
   

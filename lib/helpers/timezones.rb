@@ -1,6 +1,6 @@
 module TimezoneHelper
   def self.timezones
-    Timezone::Zone.names.sort { |a, b| sort_time(a, b) }
+    Timezone.names.sort { |a, b| sort_time(a, b) }
   end
   
   def self.sort_time(a, b)
