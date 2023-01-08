@@ -148,6 +148,11 @@ code {
   color: #3D3D3D;
 }
 
+.parsed-log {
+  padding: 20px;
+  white-space: pre-wrap;
+}
+
 @media (max-width:800px)  { 
   .container {
     width: 100%;

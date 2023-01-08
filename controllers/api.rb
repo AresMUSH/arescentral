@@ -57,50 +57,7 @@ class WebApp
   post "/api/plugins/register" do
     handler = ApiPluginRegisterCmd.new(params, session, self, @view_data)
     handler.handle     
-  end
-
-  #get "/api/games" do
-  #  Game.all.to_json
-  #end
-  
-  #post "/api/resetpassword" do
-  #  handle = HandleFinder.find_by_name(params[:name], self)
-  #  password = handle.reset_password
-  #  handle.save!
-  #  password  
-  #end
-
-  #post "/api/addplugin" do
-  #  #fara = HandleFinder.find_by_name("Faraday", self)
-  #  #clock = HandleFinder.find_by_name("Clockwork", self)
-  #  #tat = HandleFinder.find_by_name("Tat", self)
-  #  lyanna = HandleFinder.find_by_name("Lyanna", self)
-  #  Plugin.create(
-  #  name: "Economy",
-  #  key: "economy",
-  #  description: "Basic economy system.",
-  #  url: "https://github.com/cailleach1310/ares-economy-plugin",
-  #  custom_code: "Minor",  # None / Minor / etc.
-  #  web_portal: "Full", # None / Partial / Full
-  #  category: "System", # RP / Skills / Building / Community / System
-  #  installs: 0,
-  #  handle: lyanna
-  #  )  
-  #end
-  
-  #post "/api/updateplugin" do
-  #  plugin = Plugin.where(name: "Dice Roller").first
-  #  plugin.category = "Systems"
-  #  plugin.save!
-  #  {}
-  #  end
-  
-  #post "/api/updategame" do
-  #  game = Game.where(id: "11111").first
-  #  puts game.name
-  #  game.status = "Closed"
-  #  game.save!
-  #end  
+  end  
   
   #post "/api/test" do   
   #end  

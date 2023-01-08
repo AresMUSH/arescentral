@@ -14,6 +14,18 @@ class WebApp
   #    redirect to("not_found")
   #  end
   # end
+  get "/log" do
+   erb :"logs/index", :layout => :default
+  end
+
+  post "/log/format" do
+    handler = PostFormatLogCmd.new(params, session, self, @view_data)
+    handler.handle     
+  end
+  
+  get "/terms" do
+    erb :'/terms', :layout => :default
+  end
   
   not_found do
      render_erb :not_found, :layout => :default
