@@ -59,6 +59,11 @@ class WebApp
     handler.handle     
   end  
   
+  post "/api/plugins/create" do
+    handler = ApiPluginCreateCmd.new(params, session, self, @view_data)
+    handler.handle
+  end
+  
   #post "/api/test" do   
   #end  
 end

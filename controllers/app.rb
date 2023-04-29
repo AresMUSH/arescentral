@@ -30,7 +30,7 @@ class WebApp < Sinatra::Base
     end
   end
 
-  attr_accessor :view_data, :user, :sso, :ip_addr
+  attr_accessor :view_data, :user, :sso, :ip_addr, :keys
   
   helpers do
     def is_user?
@@ -53,6 +53,11 @@ class WebApp < Sinatra::Base
   def initialize
     Database.load   
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
+    
+    file = File.open( 'keys.yml' )
+    yaml = YAML::load( file )
+    @keys = yaml['keys']
+    
     super
   end
   
