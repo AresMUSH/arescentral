@@ -29,6 +29,9 @@ describe ApiGameRegisterCmd do
     Game.should_receive(:new) { game }
     game.stub(:api_key) { "ABC" }
     game.stub(:id) { "123" }
+    Time.stub(:now) { 1 }
+    
+    game.should_receive(:last_ping=).with(1)
     game.should_receive(:valid?) { true }
     game.should_receive(:update_from).with({ name: "Test", host: "somewhere.com", port: 1234 })
     game.should_receive(:save!)

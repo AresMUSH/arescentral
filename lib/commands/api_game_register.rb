@@ -18,6 +18,7 @@ class ApiGameRegisterCmd
     if (!game.valid?)
       return { status: "failure", error: game.error_str }.to_json
     end
+    game.last_ping = Time.now
     
     game.save!
     { status: "success", data: { game_id: game.id.to_s, api_key: game.api_key } }.to_json

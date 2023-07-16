@@ -33,8 +33,23 @@ describe PostHandleCreateCmd do
     @handler = PostHandleCreateCmd.new(params, @session, @server, @view_data)
 
     File.stub(:read).with('banned.txt') { "123\n456"}
+    File.stub(:read).with('blacklist.txt') { "789"}
     
     @server.should_receive(:ip_addr) { "123" }
+    @server.should_receive(:show_flash).with(:error, "You cannot create a handle at this time.  Your site has been banned, or you're connected from a proxy/VPN server that's on our blacklist.")
+    @server.should_receive(:redirect_to).with('/')
+
+    @handler.handle
+  end  
+  
+  it "should show flash message and redirect if IP blacklisted" do
+    params = { name: "Star"}
+    @handler = PostHandleCreateCmd.new(params, @session, @server, @view_data)
+
+    File.stub(:read).with('banned.txt') { "123\n456"}
+    File.stub(:read).with('blacklist.txt') { "789"}
+    
+    @server.should_receive(:ip_addr) { "789" }
     @server.should_receive(:show_flash).with(:error, "You cannot create a handle at this time.  Your site has been banned, or you're connected from a proxy/VPN server that's on our blacklist.")
     @server.should_receive(:redirect_to).with('/')
 
@@ -47,6 +62,7 @@ describe PostHandleCreateCmd do
     @handler = PostHandleCreateCmd.new(params, @session, @server, @view_data)
 
     File.stub(:read).with('banned.txt') { "456\n789"}
+    File.stub(:read).with('blacklist.txt') { "789"}
 
     Handle.should_receive(:new) { handle }     
     handle.should_receive(:create_from).with(params)
