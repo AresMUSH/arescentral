@@ -1,0 +1,28 @@
+@use "../styles/colors" as *;
+
+.main-nav {
+  background-color: $dark-background;
+  border-color: $dark-background;
+}
+
+.main-nav > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 0px 0px 0px 15px;
+}
+
+.main-nav > ul > li {
+  margin: 15px 40px 15px 0px;
+}
+
+.main-nav > ul > li > a, 
+.main-nav > ul > li > a:visited, 
+.main-nav > ul > li > a:active {
+    color: white;
+}
+.main-nav > ul > li > a:hover {
+    color: #999999;
+}

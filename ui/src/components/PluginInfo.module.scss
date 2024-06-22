@@ -1,0 +1,34 @@
+.plugin-card {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #256a9b;
+  padding-bottom: 20px;
+}
+
+.plugin-title {
+  font-size: 1.25em;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.plugin-card p {
+  margin: 0;
+}
+
+.plugin-icons { 
+  margin-left: 10px;
+}
+
+.plugin-icons i {
+  margin-right: 8px;
+}
+
+.category-label {
+}
+
+.plugin-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

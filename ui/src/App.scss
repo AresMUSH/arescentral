@@ -1,0 +1,230 @@
+@use "./styles/colors" as *;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+  
+  background-color: #fff;
+  color: $text-color;
+  padding: 0px;
+  width: 100%;
+  max-width: 100%;
+
+}
+
+.container {
+ padding: 5px 20px 5px 20px;
+ width: 100% ;
+ max-width: 1400px;
+ margin: 0px auto 0px auto;
+}
+
+a { text-decoration: none; }
+a:link {color:$secondary-color;}      /* unvisited link */
+a:visited {color:$secondary-color;}  /* visited link */
+a:hover {color:$secondary-highlight;}  /* mouse over link#462A03 */
+a:active {color:$secondary-highlight;}  /* selected link */
+
+
+body {
+  min-height: 100vh;
+  margin: 0px;
+  width: 100%; 
+  
+}
+
+hr {
+  margin: 20px 0 20px 0;
+  color: $secondary-pale;
+  border-color: $secondary-pale;
+}
+
+.titlebox {
+    text-align: left;
+    background-color: $light-background;
+    padding: 20px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.titlebox img {
+  width: 175px;
+}
+
+.site-title {
+    /* 400 - weight normal 1.3 = line height */
+    /*font: 400 50px/1.3 'Great Vibes', Helvetica, sans-serif; */
+    font: 30px 'Helvetica', sans-serif;
+    padding: 5px;
+    color: $primary-color;
+    
+    /*text-shadow: 1px 1px 0px #ededed, 4px 4px 0px rgba(0,0,0,0.15);    */
+}
+
+.site-title a {
+    text-decoration: none;
+    font: 700 50px/1.3 'Roboto', Helvetica, sans-serif;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: $dark-background;
+  color: white;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: $primary-color;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.minimal {
+  border: none;
+  background-color: inherit;
+  color: $secondary-color;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+button.secondary {
+  background-color: white;
+  color: $text-color;
+  border: 1px solid $text-color;
+}
+
+button.warn {
+  background-color: $primary-color;
+  color: white;
+}
+
+button.small {
+  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  max-width: 100%;
+}
+
+form > button {
+  margin-top: 15px;
+}
+
+.form-section {
+  border: 1px solid $border-color;
+  margin-bottom: 15px;
+}  
+
+.form-section-header
+{
+    background-color: $secondary-color;
+    color: white;
+    padding:20px;
+    font-size: 1.25em;
+}
+
+.form-section-body {
+  padding: 10px;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-top: 1px solid $border-color;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.form-field-group > label {
+  margin: 10px 0px 10px 0px;
+  font-weight: bold;
+  flex-basis: 350px;
+  max-width: 100%;
+}
+
+.form-field-group > input {
+  margin: 10px 0px 10px 0px;
+  width: 350px;
+  max-width: 100%;
+}
+
+.form-error {
+  color: red;
+}
+
+.card {
+  padding: 2em;
+}
+
+.footer {
+    font-size: 0.9em;
+    color: $faded-text;    
+    border-top: 1px solid #999;
+    margin-top: 40px;
+    padding: 10px;
+}
+
+th {
+  text-align: left;
+  background-color: $light-background;
+  padding: 5px;
+  
+}
+
+td {
+  padding: 5px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: $light-background;
+}
+
+.warning {
+  background-color: $warning;
+  padding: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+.note {
+  background-color: $note;
+  padding: 20px;
+  margin: 10px 0px 10px 0px;  
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 5px 2px 5px 2px;
+  }
+}
