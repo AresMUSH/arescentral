@@ -7,9 +7,8 @@ module AresCentral
     end
 
     def connect
-      config = YAML.load_file("db.yml")
-      raw_url = config["db"]["url"]
-      password = config["db"]["password"]
+      raw_url = Secrets.database_url
+      password = Secrets.database_password
       
       
       redis_url_and_pw = Database.build_url(raw_url, password)
