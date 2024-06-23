@@ -25,7 +25,7 @@ export const GameLinkedCharList = ({ links }: GameLinkedCharListProps) => {
              link.chars.map( (c : LinkedChar) => (
              <span key={c.name} className={styles['char-name']}>
                {c.name}
-               {c.replayed ? <i className="fas fa-users"></i> : '' }
+               {c.replayed ? <i className="fas fa-users fa-xs"></i> : '' }
              </span>
            ))
          }

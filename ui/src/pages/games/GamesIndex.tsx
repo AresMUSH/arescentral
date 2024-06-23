@@ -82,7 +82,7 @@ const GamesIndex = () => {
         </div>
 
         <div>
-          <i className="fas fa-heartbeat"></i> = Recently Updated
+          <i className="fas fa-bolt"></i> = Recently Updated
         </div>
       </div>
           

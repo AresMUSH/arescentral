@@ -26,7 +26,7 @@ export const GamesTable = ({ games }: GamesTableProps) => {
               <Link to={`/game/${game.id}`}>
                 {game.name}                
               </Link>
-              { game.recently_updated ? <i className={`fas fa-heartbeat ${styles['updated-icon']}`}></i> : '' }
+              { game.recently_updated ? <i className={`fas fa-bolt ${styles['updated-icon']}`}></i> : '' }
             </div>
             <div className={styles['game-category']}>{game.category}</div>
             <div className={styles['game-activity']}>

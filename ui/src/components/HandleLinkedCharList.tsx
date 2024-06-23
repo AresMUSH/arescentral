@@ -22,7 +22,7 @@ export const HandleLinkedCharList = ({ links }: HandleLinkedCharListProps) => {
              link.chars.map( (c : LinkedChar) => (
              <span key={c.id} className={styles['char-name']}>
                {c.name}
-               {c.replayed ? <i className="fas fa-users"></i> : '' }
+               {c.replayed ? <i className="fas fa-users fa-xs"></i> : '' }
              </span>
            ))
          }
