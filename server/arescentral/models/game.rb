@@ -34,15 +34,15 @@ module AresCentral
     end
     
     def is_closed?
-      self.status == "Closed"
+      self.status == "Closed" || self.up_status == "Lost"
     end
     
     def is_open?
-      self.status != "Closed" && self.status != "In Development"
+      self.status != "Closed" && self.status != "In Development" && self.up_status != "Lost"
     end
   
     def is_in_dev?
-      self.status == "In Development"
+      self.status == "In Development" && self.up_status != "Lost"
     end
   
     def is_active?
@@ -100,6 +100,7 @@ module AresCentral
     def up_status
       time_since_ping = (Time.now - self.last_ping)
       return "Up" if time_since_ping < (72 * 3600)
+      return "Lost" if time_since_ping > (86400 * 90) # 90 days
       "Down"
     end
 
