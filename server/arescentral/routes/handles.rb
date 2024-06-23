@@ -50,28 +50,28 @@ module AresCentral
       end
     end
     
-    get '/links' do
+    get '/api/v2/links' do
       handle_request do 
         handler = GetLinkedCharsHandler.new(@user)
         handler.handle
       end
     end
     
-    post '/links/code' do
+    post '/api/v2/links/code' do
       handle_request do 
         handler = GenerateLinkCodeHandler.new(@user)
         handler.handle
       end
     end
     
-    post '/link/:link_id/reset-password' do
+    post '/api/v2/link/:link_id/reset-password' do
       handle_request do 
         handler = ResetLinkPasswordHandler.new(@user, params)
         handler.handle
       end
     end
     
-    post '/link/:link_id/unlink' do
+    post '/api/v2/link/:link_id/unlink' do
       handle_request do 
         handler = UnlinkCharHandler.new(@user, params)
         handler.handle
