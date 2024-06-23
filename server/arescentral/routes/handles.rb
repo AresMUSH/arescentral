@@ -1,49 +1,49 @@
 module AresCentral
   class ApiServer
 
-    get '/handles' do
+    get '/api/v2/handles' do
       handle_request do 
         handler = HandlesIndexHandler.new(@user, params)
         handler.handle
       end
     end
 
-    get '/handle/:handle_id' do
+    get '/api/v2/handle/:handle_id' do
       handle_request do 
         handler = HandleDetailHandler.new(@user, params)
         handler.handle
       end
     end
     
-    get '/preferences' do
+    get '/api/v2/preferences' do
       handle_request do 
         handler = GetPreferencesHandler.new(@user)
         handler.handle
       end
     end
     
-    post '/preferences' do
+    post '/api/v2/preferences' do
       handle_request do 
         handler = SavePreferencesHandler.new(@user, self.get_request_body_json)
         handler.handle
       end
     end
     
-    get '/friends' do
+    get '/api/v2/friends' do
       handle_request do 
         handler = GetFriendsHandler.new(@user)
         handler.handle
       end
     end
 
-    post '/friend/:friend_id/remove' do
+    post '/api/v2/friend/:friend_id/remove' do
       handle_request do 
         handler = RemoveFriendHandler.new(@user, params)
         handler.handle
       end
     end
 
-    post '/friend/:friend_id/add' do
+    post '/api/v2/friend/:friend_id/add' do
       handle_request do 
         handler = AddFriendHandler.new(@user, params)
         handler.handle

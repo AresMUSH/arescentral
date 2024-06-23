@@ -1,13 +1,13 @@
 module AresCentral
   class ApiServer
-    get '/plugins' do
+    get '/api/v2/plugins' do
       handle_request do 
         handler = PluginsIndexHandler.new(@user, params)
         handler.handle
       end
     end
     
-    get '/plugin/:plugin_id' do
+    get '/api/v2/plugin/:plugin_id' do
       handle_request do 
         handler = PluginDetailHandler.new(@user, params)
         handler.handle
