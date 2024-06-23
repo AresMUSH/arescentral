@@ -245,6 +245,7 @@ module AresCentral
       data[:activity_table] = self.average_activity_table
       data[:activity_day_titles] = Game.activity_days
       data[:activity_time_titles] = Game.activity_times
+      data[:created_at] = self.created_at
       
       replayed = self.all_replayed_chars
       

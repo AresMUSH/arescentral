@@ -15,7 +15,8 @@ const GamesIndex = () => {
   const { games } = useLoaderData() as GamesIndexResponse;
   const [showInactive, setShowInactive] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string>("All");
-  const [filteredGames, setFilteredGames] = useState<Game[]>(games.open);
+  const [filteredOpenGames, setFilteredOpenGames] = useState<Game[]>(games.open);
+  const [filteredDevGames, setFilteredDevGames] = useState<Game[]>(games.dev);
 
 
   const onFilterChange = (event : React.SyntheticEvent) => {
@@ -34,7 +35,10 @@ const GamesIndex = () => {
       return showInactiveValue ? true : game.is_active;
     }
         
-    setFilteredGames(games.open.filter( (g: Game) => 
+    setFilteredOpenGames(games.open.filter( (g: Game) => 
+       categoryFilter(g, searchTerm) && activeFilter(g, showInactive) ));
+
+    setFilteredDevGames(games.dev.filter( (g: Game) => 
        categoryFilter(g, searchTerm) && activeFilter(g, showInactive) ));
        
   }, [searchTerm, showInactive]);
@@ -82,13 +86,13 @@ const GamesIndex = () => {
         </div>
       </div>
           
-      <GamesTable games={filteredGames} />
+      <GamesTable games={filteredOpenGames} />
       
       
       <a id="dev" />
       <h2>Games in Development</h2>
       
-      <GamesTable games={games.dev} />
+      <GamesTable games={filteredDevGames} />
       
       <a id="past" />
       <h2>Past Games</h2>

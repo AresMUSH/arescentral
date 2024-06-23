@@ -29,15 +29,15 @@ export const GamesTable = ({ games }: GamesTableProps) => {
               { game.recently_updated ? <i className={`fas fa-heartbeat ${styles['updated-icon']}`}></i> : '' }
             </div>
             <div className={styles['game-category']}>{game.category}</div>
-            <div className={styles['game-activity']}>            
-              <ActivityIndicator rating={game.activity_rating} />
+            <div className={styles['game-activity']}>
+              { game.is_open ? ( <ActivityIndicator rating={game.activity_rating} />) : null  }
             </div>
             <div className={styles['game-status']}>
                <>
                 <GameStatusIndicator status={game.status} />
                 
                  {
-                   game.is_open ? (<GameUpIndicator status={game.up_status} />) : null
+                   game.status === "Closed" ? '' : (<GameUpIndicator status={game.up_status} />)
                  }
                  
               </>
@@ -52,7 +52,7 @@ export const GamesTable = ({ games }: GamesTableProps) => {
               {
                 game.wiki_archive ? 
                 ( 
-                    <a href={game.wiki_archive} target="_blank" rel="noreferrer noopener"><button className="minimal">View Archive <i className="fas fa-external-link-alt" /></button></a>
+                    <a href={game.wiki_archive} target="_blank" rel="noreferrer noopener"><button className="minimal">Archive <i className="fas fa-external-link-alt" /></button></a>
                 ) : null
               }             
             </div>

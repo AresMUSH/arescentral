@@ -24,7 +24,7 @@ export const GameStatusIndicator = ( { status }: GameStatusIndicatorProps ) => {
     }
 
   return (
-     <Label status={statusClass}>{status}</Label>
+     <Label status={statusClass}>{status === "In Development" ? "In Dev" : status}</Label>
   );
 }
 

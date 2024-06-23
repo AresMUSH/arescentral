@@ -30,6 +30,7 @@ export interface Game {
   activity_table: any;
   activity_time_titles: string[];
   activity_day_titles: string[];
+  created_at: Date;
 };
 
 export interface GamesIndex {

@@ -13,7 +13,7 @@ module AresCentral
       if (!game)
         raise NotFoundError.new
       end
-      
+            
       if (!game.can_view_game?(@user))
         raise InsufficientPermissionError.new
       end

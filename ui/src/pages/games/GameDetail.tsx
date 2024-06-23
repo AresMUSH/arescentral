@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import { useAuth } from '../../contexts/AuthContext';
 import { isErrorResponse } from "../../services/RequestHelper";
 import type { ActionFunction } from "react-router";
+import dayjs from "dayjs";
 
 export const loadGame : ActionFunction = async({params}) => {
   const data = await getGame(params.gameId || '');
@@ -103,6 +104,8 @@ const GameDetail = () => {
             
       
       <p><b>Status:</b> {game.status}</p>
+
+      <p><b>Created:</b> {dayjs(game.created_at).format("MMM DD, YYYY")}</p>
       
       <hr/>
     
