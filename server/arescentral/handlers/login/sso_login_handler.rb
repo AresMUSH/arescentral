@@ -37,7 +37,7 @@ module AresCentral
       sso.name = handle.name
       sso.username = handle.name
       sso.require_activation = true
-      sso.external_id = handle.id
+      sso.external_id = handle.forum_id
       sso.bio = handle.profile
       sso.avatar_url = handle.image_url
       sso.sso_secret = secret

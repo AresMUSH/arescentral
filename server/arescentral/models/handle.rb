@@ -127,6 +127,11 @@ module AresCentral
       self.name_upcase = self.name ? self.name.upcase : nil
     end
   
+    def forum_id
+      # Use old ID if available for backwards compat with old forum users
+      self.old_id.blank? ? self.id : self.old_id
+    end
+    
     def friends
       self.friendships.map { |f| f.friend }
     end
