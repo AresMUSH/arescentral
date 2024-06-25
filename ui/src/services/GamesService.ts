@@ -1,5 +1,5 @@
 import { Handle, LinkedChar } from "./HandlesService"
-import { sendGet } from "./RequestHelper";
+import { sendGet, sendPost } from "./RequestHelper";
 
 export interface GameLink {
   handle: Handle;
@@ -47,6 +47,10 @@ export interface GameResponse {
   game: Game;
 }
 
+export interface LogCleanerResponse {
+  log: string;
+}
+
 export async function getGames() : Promise<GamesIndexResponse>{
   const response = await sendGet('games');
   return { games: response.data };
@@ -55,4 +59,12 @@ export async function getGames() : Promise<GamesIndexResponse>{
 export async function getGame(gameId : string) : Promise<GameResponse> {
   const response = await sendGet(`game/${gameId}`);
   return { game: response.data };
+}
+
+export async function formatRPLog(log : string, format: string) : Promise<LogCleanerResponse> {
+  const response = await sendPost(`log/clean`, {
+    log: log,
+    format: format
+  });
+  return response.data;
 }

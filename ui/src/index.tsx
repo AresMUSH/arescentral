@@ -27,6 +27,8 @@ import EditGame from "./pages/admin/EditGame";
 import PluginsIndex, { loadPlugins } from "./pages/contribs/PluginsIndex";
 import ThemesIndex from "./pages/contribs/ThemesIndex";
 import NotFound from "./pages/NotFound";
+import LogCleaner from "./pages/games/LogCleaner";
+
 import {AuthProvider} from "./contexts/AuthContext";
 
 const container = document.getElementById("root");
@@ -142,6 +144,10 @@ const router = createBrowserRouter([
       {
         path: "/sso",
         element: <SSOLogin />
+      },
+      {
+        path: "/logcleaner",
+        element: <LogCleaner />
       },
       {
         path: "*",

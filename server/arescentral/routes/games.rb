@@ -29,5 +29,12 @@ module AresCentral
       end
     end
     
+    post '/api/v2/log/clean' do
+      handle_request do 
+        handler = LogCleanerHandler.new(self.get_request_body_json)
+        handler.handle
+      end
+    end
+    
   end
 end

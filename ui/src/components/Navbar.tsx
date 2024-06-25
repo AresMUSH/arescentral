@@ -23,6 +23,9 @@ export const Navbar = () => {
           <Link to="/themes">Themes</Link>
         </li> 
         <li>
+          <Link to="/logcleaner">Log Cleaner</Link>
+        </li> 
+        <li>
           <a href="https://forum.aresmush.com/" target='_blank' rel='noopener noreferrer'>Forum</a>
         </li>   
         <li>

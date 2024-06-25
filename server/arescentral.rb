@@ -50,6 +50,7 @@ require 'arescentral/handlers/api/api_reset_char_password.rb'
 
 require 'arescentral/handlers/games/games_index_handler.rb'
 require 'arescentral/handlers/games/game_detail_handler.rb'
+require 'arescentral/handlers/games/log_cleaner_handler.rb'
 
 require 'arescentral/handlers/handles/handles_index_handler.rb'
 require 'arescentral/handlers/handles/handle_detail_handler.rb'
@@ -82,3 +83,8 @@ require 'arescentral/models/game.rb'
 require 'arescentral/models/handle.rb'
 require 'arescentral/models/linked_char.rb'
 require 'arescentral/models/plugin.rb'
+
+require 'arescentral/log_format/format_spec'
+require 'arescentral/log_format/line_parser'
+require 'arescentral/log_format/log_format_reader'
+require 'arescentral/log_format/log_parser'
