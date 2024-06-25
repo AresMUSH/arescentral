@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { getGame, GameResponse } from "../../services/GamesService";
 import { updateGameStatus } from "../../services/AdminService";
@@ -26,38 +26,6 @@ const GameDetail = () => {
   const navigate = useNavigate();
   const { game } = useLoaderData() as GameResponse;
   const { user } = useAuth();
-  
-  useEffect(() => {
-    if (game) {
-      formik.setFieldValue('status', game.status);
-      formik.setFieldValue('is_public', game.public_game);
-    }
-  }, [game]);
-  
-  const formik = useFormik({
-    initialValues: {
-      status: '',
-      is_public: false
-    },
-
-    onSubmit: (async (values) => {
-      setCompleteMessage('');
-      try {
-        const response = await updateGameStatus(game.id, values.status, values.is_public);
-        if (isErrorResponse(response)) {
-          setCompleteMessage(response.error);
-        } else
-        {
-          setCompleteMessage('Game updated.');        
-        }
-      } catch(e : any) {
-        console.log(e);
-        navigate('/error');
-      }
-      
-    }),
-    validateOnChange: false,
-  });
 
   return (
     <>
@@ -157,53 +125,10 @@ const GameDetail = () => {
     <GameLinkedCharList links={game.past_chars} />
     
     {
-      user && user.is_admin ? <>
-       <div className={`note ${styles['admin-area']}`}>
-         <h3>Admin Info</h3>
-          
-          <form onSubmit={formik.handleSubmit}>
-      
-             <div className="form-field-group">    
-               <label htmlFor="is_public">Is Public:</label>
-               <input 
-                  id="is_public"
-                  name="is_public" 
-                  type="checkbox" 
-                  onChange={formik.handleChange} 
-                  checked={formik.values.is_public} 
-               />
-             </div>
-                  
-             <div className="form-field-group">    
-               <label htmlFor="status">Status:</label>
-               <select 
-                  id="status"
-                  name="status" 
-                  onChange={formik.handleChange}
-                  value={formik.values.status} 
-               >
-                <option value="In Development" key="dev">In Dev</option>
-                <option value="Alpha" key="alpha">Alpha</option>
-                <option value="Beta" key="beta">Beta</option>
-                <option value="Open" key="open">Open</option>
-                <option value="Closed" key="closed">Closed</option>
-                <option value="Sandbox" key="sandbox">Sandbox</option>
-               </select>
-             </div>
-                  
-            <button type="submit" disabled={formik.isSubmitting}>
-             Update
-            </button>
-          </form>
-          
-          { completeMessage ? <p className={styles['admin-note']}><b>{completeMessage}</b></p> : '' }
-      
-        </div>
-      </> : ''
-      
+          user && user.is_admin ? 
+           <div className={`note ${styles['admin-area']}`}><Link to={`/admin/game/${game.id}/edit`}>Edit</Link></div> :
+          ''
     }
-    
-      
     </>
   );
 };

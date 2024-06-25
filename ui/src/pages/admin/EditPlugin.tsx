@@ -79,7 +79,7 @@ const EditPlugin = () => {
   return (
     <>
       <Helmet>
-        <title>Create Plugin - AresCentral</title>
+        <title>Edit Plugin - AresCentral</title>
       </Helmet>
       <h1>Edit Plugin</h1> 
       

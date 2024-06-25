@@ -6,6 +6,7 @@ module AresCentral
       @game_id = params["game_id"]
       @status = body_data["status"] || "In Development"
       @is_public = "#{body_data["is_public"]}".to_bool
+      @wiki_archive = body_data["wiki_archive"]
     end
     
     def handle
@@ -27,6 +28,7 @@ module AresCentral
       
       game.update(status: @status)
       game.update(public_game: @is_public)
+      game.update(wiki_archive: @wiki_archive)
 
       {}
     end

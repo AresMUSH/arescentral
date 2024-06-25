@@ -23,6 +23,7 @@ import Preferences from "./pages/handles/Preferences";
 import Account from "./pages/handles/Account";
 import CreatePlugin from "./pages/admin/CreatePlugin";
 import EditPlugin, { loadPlugin } from "./pages/admin/EditPlugin";
+import EditGame from "./pages/admin/EditGame";
 import PluginsIndex, { loadPlugins } from "./pages/contribs/PluginsIndex";
 import ThemesIndex from "./pages/contribs/ThemesIndex";
 import NotFound from "./pages/NotFound";
@@ -79,6 +80,11 @@ const router = createBrowserRouter([
         path: "/admin/games",
         element: <GamesAdmin />,
         loader: loadGamesAdmin
+      },
+      {
+        path: "/admin/game/:gameId/edit",
+        element: <EditGame />,
+        loader: loadGame
       },
       {
         path: "/admin/plugin/create",

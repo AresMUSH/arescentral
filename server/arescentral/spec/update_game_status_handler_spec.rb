@@ -36,7 +36,7 @@ module AresCentral
     end  
     
     it "should update the game" do
-      @handler = UpdateGameStatusHandler.new(@user, { "game_id" => "123" }, { "status" => "Beta", "is_public" => true })
+      @handler = UpdateGameStatusHandler.new(@user, { "game_id" => "123" }, { "status" => "Beta", "is_public" => true, "wiki_archive" => "WIKI" })
       expect(@user).to receive(:is_admin?) { true }
       
       game = double
@@ -45,6 +45,7 @@ module AresCentral
       expect(Game).to receive(:[]).with("123") { game }
       expect(game).to receive(:update).with(status: "Beta")
       expect(game).to receive(:update).with(public_game: true)
+      expect(game).to receive(:update).with(wiki_archive: "WIKI")
       response = {}
       expect(@handler.handle).to eq response
     end  

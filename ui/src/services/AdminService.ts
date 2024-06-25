@@ -60,10 +60,11 @@ export async function updatePlugin(pluginId : string, values: {}) : Promise<Plug
   return response.data;
 }
 
-export async function updateGameStatus(gameId : string, status : string, isPublic : boolean) : Promise<void | ErrorResponse> {
+export async function updateGameStatus(gameId : string, status : string, isPublic : boolean, wikiArchive: string) : Promise<void | ErrorResponse> {
   const body = {
     status: status,
-    is_public: isPublic
+    is_public: isPublic,
+    wiki_archive: wikiArchive
   };
   
   const response = await sendPost(`admin/game-status/${gameId}`, body);

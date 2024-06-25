@@ -60,6 +60,7 @@ module AresCentral
       allow(@handle).to receive(:email) { "somebody@somewhere.com" }
       allow(@handle).to receive(:name) { "Jack" }
       allow(@handle).to receive(:id) { "111" }
+      allow(@handle).to receive(:forum_id) { "FORUMID" }
       allow(@handle).to receive(:profile) { "Profile" }
       allow(@handle).to receive(:image_url) { "myimage.jpg" }
       expect(Handle).to receive(:find_by_name).with("Jack") { @handle }
@@ -71,7 +72,7 @@ module AresCentral
       expect(sso).to receive(:email=).with("somebody@somewhere.com")
       expect(sso).to receive(:username=).with("Jack")
       expect(sso).to receive(:name=).with("Jack")
-      expect(sso).to receive(:external_id=).with("111")
+      expect(sso).to receive(:external_id=).with("FORUMID")
       expect(sso).to receive(:require_activation=).with(true)
       expect(sso).to receive(:bio=).with("Profile")
       expect(sso).to receive(:avatar_url=).with("myimage.jpg")
