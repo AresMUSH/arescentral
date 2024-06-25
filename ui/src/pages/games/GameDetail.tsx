@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
-import { useLoaderData, useNavigate, Link } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { getGame, GameResponse } from "../../services/GamesService";
-import { updateGameStatus } from "../../services/AdminService";
 import ActivityIndicator from "../../components/ActivityIndicator";
 import GameStatusIndicator from "../../components/GameStatusIndicator"
 import GameUpIndicator from "../../components/GameUpIndicator"
 import { GameLinkedCharList } from "../../components/GameLinkedCharList";
 import styles from './GameDetail.module.scss'
 import Markdown from 'react-markdown'
-import { useFormik } from "formik";
 import { useAuth } from '../../contexts/AuthContext';
-import { isErrorResponse } from "../../services/RequestHelper";
 import type { ActionFunction } from "react-router";
 import dayjs from "dayjs";
 
@@ -21,9 +17,6 @@ export const loadGame : ActionFunction = async({params}) => {
 }
 
 const GameDetail = () => {
-  const [completeMessage, setCompleteMessage] = useState<string>("");
-
-  const navigate = useNavigate();
   const { game } = useLoaderData() as GameResponse;
   const { user } = useAuth();
 

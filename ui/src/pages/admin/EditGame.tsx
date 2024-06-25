@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { getGame, GameResponse, Plugin } from "../../services/GamesService";
+import { GameResponse } from "../../services/GamesService";
 import { updateGameStatus } from "../../services/AdminService";
 //import styles from './EditGame.module.scss'
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormik } from "formik";
 import { isErrorResponse } from "../../services/RequestHelper";
-import type { ActionFunction } from "react-router";
 
 const EditGame = () => {
   const { game } = useLoaderData() as GameResponse;
@@ -28,9 +27,6 @@ const EditGame = () => {
     else if (user != null && !user.is_admin) {
       navigate('/NotFound');      
     }
-    else {
-      formik.setValues(game);
-    }
   }, [user]);  
 
   useEffect(() => {
@@ -41,7 +37,12 @@ const EditGame = () => {
     }
   }, [game]);
   
-  const formik = useFormik({
+  interface UpdateGame {
+    status: string;
+    is_public: boolean;
+    wiki_archive: string;
+  }
+  const formik = useFormik<UpdateGame>({
     initialValues: {
       status: '',
       is_public: false,
