@@ -22,7 +22,7 @@ const GamesArchive = () => {
       
       <p>Closed AresMUSH games are listed here. Some games have used the wiki export feature to make a static HTML archive of the web portal. If the archive is a ZIP file, just unzip the files on your local PC and then open "index.html" in your web browser. You can then browse the files offline.</p>
       
-      <GamesTable games={games.closed} />
+      <GamesTable games={games.closed} showActivity={false} />
 
       
     </>

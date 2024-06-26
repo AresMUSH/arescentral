@@ -86,13 +86,13 @@ const GamesIndex = () => {
         </div>
       </div>
           
-      <GamesTable games={filteredOpenGames} />
+      <GamesTable games={filteredOpenGames} showActivity={true} />
       
       
       <a id="dev" />
       <h2>Games in Development</h2>
       
-      <GamesTable games={filteredDevGames} />
+      <GamesTable games={filteredDevGames} showActivity={false} />
       
       <a id="past" />
       <h2>Past Games</h2>

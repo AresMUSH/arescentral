@@ -6,7 +6,8 @@ import GameStatusIndicator from "./GameStatusIndicator"
 import GameUpIndicator from "./GameUpIndicator"
 
 interface GamesTableProps {
-  games: Game[]
+  games: Game[],
+  showActivity: boolean
 }
 
 export const GamesTable = ({ games }: GamesTableProps) => {
@@ -16,7 +17,8 @@ export const GamesTable = ({ games }: GamesTableProps) => {
       <div className={styles['games-header']}>
         <div className={styles['game-name-header']}>Game</div>
         <div className={styles['game-category-header']}>Category</div>
-        <div className={styles['game-activity-header']}>Activity</div>
+     
+        { showActivity ?  <div className={styles['game-activity-header']}>Activity</div> : '' }
         <div className={styles['game-status-header']}>Status</div>
       </div>
 
@@ -29,9 +31,11 @@ export const GamesTable = ({ games }: GamesTableProps) => {
               { game.recently_updated ? <i className={`fas fa-bolt ${styles['updated-icon']}`}></i> : '' }
             </div>
             <div className={styles['game-category']}>{game.category}</div>
-            <div className={styles['game-activity']}>
-              { game.is_open ? ( <ActivityIndicator rating={game.activity_rating} />) : null  }
-            </div>
+            { showActivity ? 
+                <div className={styles['game-activity']}>
+                  { game.is_open ? ( <ActivityIndicator rating={game.activity_rating} />) : null  }
+                </div> : '' 
+            }
             <div className={styles['game-status']}>
                <>
                 <GameStatusIndicator status={game.status} />
