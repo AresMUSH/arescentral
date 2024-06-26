@@ -10,7 +10,7 @@ interface GamesTableProps {
   showActivity: boolean
 }
 
-export const GamesTable = ({ games }: GamesTableProps) => {
+export const GamesTable = ({ games, showActivity }: GamesTableProps) => {
   return (
   <>
     <div className={styles['games-list']}>
