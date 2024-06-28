@@ -72,7 +72,7 @@ module AresCentral
       
       create_params = {
         name: "Test Plugin",
-        key: "mytest",
+        keyname: "mytest",
         description: "A test plugin.",
         url: "https://github.com/Someone/ares-mytest-plugin",
         custom_code: "Yes",

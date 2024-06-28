@@ -52,7 +52,7 @@ module AresCentral
         
       plugin = Plugin.create(
         name: name,
-        key: key,
+        keyname: key,
         description: description,
         url: url,
         custom_code: custom_code,
