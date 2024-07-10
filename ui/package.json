@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@marsidev/react-turnstile": "^0.7.1",
     "axios": "^1.6.7",
     "dayjs": "^1.11.11",
     "formik": "^2.4.5",

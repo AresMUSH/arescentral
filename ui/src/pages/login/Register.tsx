@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import styles from './Register.module.scss'
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormik, FormikErrors } from "formik";
+import { Turnstile } from '@marsidev/react-turnstile'
 
 interface ITurnstile {
   reset() : void;
@@ -18,6 +19,7 @@ declare global {
 const Register = () => {
 
   const [error, setError] = useState<React.ReactNode>("");
+  const [token, setToken] = useState<string>("");
   const navigate = useNavigate();
   const { user, register } = useAuth();
   const turnstileWidget = useRef<HTMLDivElement|null>(null);
@@ -27,7 +29,6 @@ const Register = () => {
       navigate('/');
     }
   }, [user]);
-
 
   interface FormValues {
     name: string;
@@ -47,19 +48,8 @@ const Register = () => {
     },
     
     onSubmit: (async (values) => {
-      let turnstileToken = null;
       
-      let widgetNode = turnstileWidget.current;
-      if (widgetNode !== null)
-      {
-        for (let child of widgetNode.children) {
-          if (child.tagName === "INPUT") {
-            turnstileToken = (child as HTMLInputElement).value || '';
-          }
-        }
-      } 
-      
-      if (turnstileToken === null) {
+      if (!token || token.length === 0) {
         setError("There was a problem reading the captcha token. Please reload the page.");
         return;
       }
@@ -73,10 +63,10 @@ const Register = () => {
           values.password, 
           values.email, 
           values.securityQuestion,
-          turnstileToken)
+          token)
 
         if (error) {
-          window.turnstile.reset()
+          turnstileWidget.current?.reset();
           
           setError(error);
         }
@@ -121,7 +111,6 @@ const Register = () => {
     
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/css/bootstrap.min.css" integrity="sha512-siwe/oXMhSjGCwLn+scraPOWrJxHlUgMBMZXdPe2Tnk3I0x3ESCoLz7WZ5NTH6SZrywMY+PB1cjyqJ5jAluCOg==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
-        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
     
     
       </Helmet>
@@ -182,7 +171,7 @@ const Register = () => {
 
 
              
-           <div className={''}>
+           <div className={styles['confirm-human-field']}>
             <input type="checkbox" 
              name="isHuman"
              className={styles['confirm-human-field']}
@@ -195,14 +184,13 @@ const Register = () => {
            {
              error ? <div className="warning">{error}</div> : ''
            }
-                
-         
-           <div 
-             id="turnstileWidget"
-             ref={turnstileWidget}
-             className="cf-turnstile" 
-             data-sitekey={import.meta.env.VITE_ARESCENTRAL_TURNSTILE_ID} >
-           </div>
+
+           <Turnstile 
+             ref={turnstileWidget} 
+             siteKey={import.meta.env.VITE_ARESCENTRAL_TURNSTILE_ID} 
+             onSuccess={setToken} 
+            />
+                   
                        
           <button type="submit" disabled={formik.isSubmitting} >
            Submit
