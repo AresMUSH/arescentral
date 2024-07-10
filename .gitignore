@@ -1,6 +1,7 @@
 # server
 
 logs/*
+*.pid
 *.log
 publish.rb
 db.yml

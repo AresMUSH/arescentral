@@ -4,17 +4,8 @@ import { Helmet } from "react-helmet-async";
 import styles from './Register.module.scss'
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormik, FormikErrors } from "formik";
-import { Turnstile } from '@marsidev/react-turnstile'
+import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile'
 
-interface ITurnstile {
-  reset() : void;
-}
-
-declare global {
-  interface Window {
-    turnstile: ITurnstile;
-  }
-}
 
 const Register = () => {
 
@@ -22,7 +13,7 @@ const Register = () => {
   const [token, setToken] = useState<string>("");
   const navigate = useNavigate();
   const { user, register } = useAuth();
-  const turnstileWidget = useRef<HTMLDivElement|null>(null);
+  const turnstileWidget = useRef<TurnstileInstance|null>(null);
 
   useEffect(() => {
     if (user) {
