@@ -22,7 +22,7 @@ module AresCentral
       end
     end
     
-    post 'api/v1/admin/un-ban/:handle_id' do
+    post '/api/v2/admin/un-ban/:handle_id' do
       handle_request do 
         handler = BanPlayerHandler.new(@user, params, false)
         handler.handle
@@ -50,7 +50,7 @@ module AresCentral
       end
     end
     
-    post '/admin/plugin/:plugin_id/update' do
+    post '/api/v2/admin/plugin/:plugin_id/update' do
       handle_request do 
         handler = PluginUpdateHandler.new(@user, params, self.get_request_body_json)
         handler.handle
