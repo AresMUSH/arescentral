@@ -41,6 +41,10 @@ module AresCentral
       self.installs + Game.all.select { |g| g.uses_plugin?(self.keyname) }.count
     end
     
+    def installed_games
+      Game.all.select { |g| g.is_open? && g.is_public? && g.uses_plugin?(self.keyname) }
+    end
+    
     def summary_data
       {
         id: self.id,
@@ -53,7 +57,7 @@ module AresCentral
         category: self.category,
         installs: self.install_count,
         author_name: self.author_name,
-        games: Game.all.select { |g| g.uses_plugin?(self.keyname) }.map { |g| {
+        games: self.installed_games.map { |g| {
           id: g.id,
           name: g.name
         }}

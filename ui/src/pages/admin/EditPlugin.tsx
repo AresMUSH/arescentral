@@ -54,7 +54,8 @@ const EditPlugin = () => {
       custom_code: false,
       description: '',
       author_name: '',
-      url: ''
+      url: '',
+      games: []
     },
 
     onSubmit: (async (values) => {

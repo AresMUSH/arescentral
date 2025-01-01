@@ -4,6 +4,7 @@ import { Plugin } from "../services/ContribsService";
 import styles from "./PluginInfo.module.scss";
 import Markdown from 'react-markdown'
 import Label from "./Label"
+import { Game } from "../services/GamesService";
 
 interface PluginInfoProps {
   plugin: Plugin,
@@ -38,7 +39,14 @@ export const PluginInfo = ({ plugin, user }: PluginInfoProps) => {
       
       <Markdown children={plugin.description} />
       
-         
+      <div>
+            Installed: 
+            {       
+              plugin.games.map( (g : Game) =>         
+              <Link to={`/game/${g.id}`}>{g.name}</Link>
+              )
+            }
+      </div>
          { user && user.is_admin ? <Link to={`/admin/plugin/${plugin.id}/edit`}>[Edit]</Link> : '' }
     
       

@@ -1,4 +1,5 @@
 import { sendGet } from "./RequestHelper";
+import { Game } from "./GamesService"
 
 export interface Plugin {
   id: string;
@@ -11,6 +12,7 @@ export interface Plugin {
   category: string;
   installs: number;
   author_name: string;
+  games: Game[];
 }
 
 export interface PluginsIndexResponse {
