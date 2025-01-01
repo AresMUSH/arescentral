@@ -40,11 +40,15 @@ export const PluginInfo = ({ plugin, user }: PluginInfoProps) => {
       <Markdown children={plugin.description} />
       
       <div>
-            Installed At:&nbsp;
-            {       
-              plugin.games.map( (g : Game) =>         
-              <Link to={`/game/${g.id}`}>{g.name}</Link>
-              )
+            { plugin.games.count > 0 ?
+              <>
+              Installed At:&nbsp;
+              {       
+                plugin.games.map( (g : Game) =>         
+                <Link to={`/game/${g.id}`}>{g.name}</Link>
+                )
+              }
+              </> : ''
             }
       </div>
          { user && user.is_admin ? <Link to={`/admin/plugin/${plugin.id}/edit`}>[Edit]</Link> : '' }
