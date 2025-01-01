@@ -40,7 +40,7 @@ export const PluginInfo = ({ plugin, user }: PluginInfoProps) => {
       <Markdown children={plugin.description} />
       
       <div>
-            { plugin.games.count > 0 ?
+            { plugin.games.length > 0 ?
               <>
               Installed At:&nbsp;
               {       
