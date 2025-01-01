@@ -40,7 +40,8 @@ const CreatePlugin = () => {
       url: '',
       installs: 0,
       id: '',
-      key: ''
+      key: '',
+      games: []
     },
 
     onSubmit: (async (values) => {
