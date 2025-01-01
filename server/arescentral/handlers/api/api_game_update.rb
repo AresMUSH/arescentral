@@ -12,6 +12,7 @@ module AresCentral
       @public_game = "#{params['public_game']}".to_bool
       @website = params["website"]
       @activity = params["activity"].blank? ? {} : JSON.parse(params["activity"])
+      @extras = params["extras"].blank? ? [] : params["extras"].split(" ").map { |e| e.downcase }
     end
 
     def self.required_fields
@@ -61,7 +62,8 @@ module AresCentral
         status: @status,
         activity: @activity,
         last_ping: Time.now,
-        last_status_update: last_status_update
+        last_status_update: last_status_update,
+        extras: @extras
       )
     
       { status: "success" }.to_json

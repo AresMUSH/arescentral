@@ -5,12 +5,7 @@ module AresCentral
     end
   
     def handle
-      plugin = Plugin.all.select { |p| p.keyname == (name || "").downcase }.first
-      if (!plugin)
-        return { status: "failure", error: "Plugin #{name} not found." }.to_json
-      end
-    
-      plugin.update(installs: plugin.installs + 1)
+      # DEPRECATED - plugins are now tracked via game registration
     
       { status: "success", data: {} }.to_json
     end

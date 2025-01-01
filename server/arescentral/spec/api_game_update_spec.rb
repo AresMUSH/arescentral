@@ -13,7 +13,8 @@ module AresCentral
         "status" => "Beta",
         "public_game" => true,
         "website" => "somewhere.com",
-        "description" => "My game."
+        "description" => "My game.",
+        "extras" => "txt COOKIES"
       }
     end
     
@@ -96,7 +97,9 @@ module AresCentral
         public_game: true,
         status: "Beta",
         website: "somewhere.com",
-        last_status_update: last_update_time     
+        last_status_update: last_update_time,
+        extras: [ "txt", "cookies" ]
+          
       }
       expect(game).to receive(:update).with(update_params)
     
@@ -129,7 +132,8 @@ module AresCentral
         public_game: true,
         status: "Open",
         website: "somewhere.com",
-        last_status_update: 1     
+        last_status_update: 1,
+        extras: [ "txt", "cookies" ]
       }
       expect(game).to receive(:update).with(update_params)
     

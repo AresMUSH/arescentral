@@ -20,6 +20,7 @@ module AresCentral
     attribute :public_game, :type => DataType::Boolean, :default => false
     attribute :last_ping, :type => DataType::Time, :default => Time.now
     attribute :activity, :type => DataType::Hash, :default => {}
+    attribute :extras, :type => DataType::Array, :default => []
     attribute :status
     attribute :wiki_archive
     attribute :old_id
@@ -217,6 +218,10 @@ module AresCentral
       self.all_replayed_chars.map { |char_name, links| "#{char_name}: #{links.map { |l| l.handle.name }}" }
     end
     
+    def uses_plugin?(name)
+      (self.extras || []).include?(name.downcase)
+    end
+    
     def summary_data
       {
         id: self.id,
@@ -236,6 +241,7 @@ module AresCentral
         activity_points: self.activity_points,
         recently_updated: self.is_recently_updated,
         is_active: self.is_active?,
+        extras: self.extras || [],
         summary: self.description.length > 150 ? "#{self.description[0..150]}..." : self.description
       }
     end 

@@ -4,10 +4,9 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 puts "Path: #{__FILE__}"
 
 require 'sinatra'
-require 'log4r'
-require 'log4r/yamlconfigurator'
 require 'ohm'
 require 'bcrypt'
+require 'logger'
 
 require 'arescentral/authorization.rb'
 require 'arescentral/captcha.rb'

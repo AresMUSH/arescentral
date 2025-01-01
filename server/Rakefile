@@ -3,9 +3,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__)))
 require 'arescentral'
 
 task :start do |t, args|
-  logger = AresCentral::Logger.new
-  logger.start
-  
+  AresCentral.start_logger
   web = AresCentral::ApiLoader.new
   web.run
   

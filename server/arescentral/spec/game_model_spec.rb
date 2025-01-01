@@ -379,6 +379,21 @@ module AresCentral
         expect(@game.is_active?).to eq false
       end      
       
-    end     
+    end  
+    
+    describe :uses_plugin do
+      it "should report when a plugin is used" do
+        @game = Game.new(extras: ["txt", "cookies"])
+        expect(@game.uses_plugin?("xxx")).to eq false
+        expect(@game.uses_plugin?("txt")).to eq true
+        expect(@game.uses_plugin?("COOKIES")).to eq true
+      end
+      
+      it "should not die if extras uninitialized" do
+        @game = Game.new()
+        expect(@game.uses_plugin?("xxx")).to eq false
+      end
+      
+    end   
   end
 end

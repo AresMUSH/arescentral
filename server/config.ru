@@ -6,7 +6,5 @@ Bundler.require
 
 require_relative 'arescentral'
 
-logger = AresCentral::Logger.new
-logger.start
-
+AresCentral.start_logger
 run AresCentral::ApiServer.new

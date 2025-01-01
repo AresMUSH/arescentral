@@ -1,9 +1,7 @@
 require_relative "../../arescentral"
 require 'rspec'
 
-logger = AresCentral::Logger.new
-logger.start
-
+AresCentral.start_logger
 
 # figure out where we are being loaded from
 if $LOADED_FEATURES.grep(/spec\/spec_helper\.rb/).any?

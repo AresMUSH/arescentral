@@ -78,19 +78,6 @@ module AresCentral
       allow(old_game).to receive(:host) { "game2.aresmush.com" }
       allow(old_game).to receive(:port) { 4201 }
     
-      create_params = {
-        activity: {},
-        category: "Other",
-        description: "My game.",
-        host: "game.aresmush.com",
-        last_ping: 1,
-        name: "Test Game",
-        port: 4201,
-        public_game: true,
-        status: "Beta",
-        website: "somewhere.com"        
-      }
-      
       new_game = double("NEWGAME")
       expect(Game).to receive(:create) { new_game }
       expect(new_game).to receive(:id) { "555" }

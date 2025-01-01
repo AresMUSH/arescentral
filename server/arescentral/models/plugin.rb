@@ -19,7 +19,7 @@ module AresCentral
         return nil
       end
             
-      url.split("/").last.gsub(/^ares-/, '').sub("-plugin", '')
+      url.split("/").last.gsub(/^ares-/, '').sub("-plugin", '').downcase
     end
   
     attribute :keyname
@@ -36,7 +36,11 @@ module AresCentral
     def author_name
       self.handle ? self.handle.name : "Anonymous"
     end
-
+    
+    def install_count
+      self.installs + Game.all.select { |g| g.uses_plugin?(self.keyname) }.count
+    end
+    
     def summary_data
       {
         id: self.id,
@@ -47,8 +51,12 @@ module AresCentral
         custom_code: self.custom_code == "None" ? false : true,
         web_portal: self.web_portal == "None" ? false : true,
         category: self.category,
-        installs: self.installs,
-        author_name: self.author_name
+        installs: self.install_count,
+        author_name: self.author_name,
+        games: Game.all.select { |g| g.uses_plugin?(self.keyname) }.map { |g| {
+          id: g.id,
+          name: g.name
+        }}
       }
     end
   end
