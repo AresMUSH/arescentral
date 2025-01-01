@@ -40,7 +40,7 @@ export const PluginInfo = ({ plugin, user }: PluginInfoProps) => {
       <Markdown children={plugin.description} />
       
       <div>
-            Installed: 
+            Installed At:&nbsp;
             {       
               plugin.games.map( (g : Game) =>         
               <Link to={`/game/${g.id}`}>{g.name}</Link>
