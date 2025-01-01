@@ -8,7 +8,6 @@ db.yml
 keys.yml
 .DS_Store
 todo/*
-Gemfile.lock
 config.rb
 secrets.rb
 session_secret.txt
