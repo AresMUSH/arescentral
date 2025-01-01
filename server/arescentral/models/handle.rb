@@ -157,6 +157,8 @@ module AresCentral
     def reset_password
       temp_password = (0...8).map { (65 + rand(26)).chr }.join
       self.change_password temp_password
+      self.update(login_failures: 0)
+      self.update(login_lockout_time: nil)
       temp_password
     end
   
