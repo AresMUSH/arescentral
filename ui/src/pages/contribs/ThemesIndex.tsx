@@ -20,7 +20,7 @@ const ThemesIndex = () => {
 
       <h2>Available Themes</h2>
       <ul>
-      <li><a href="https://github.com/girlcalledblu/ares-basicblu-theme" target="_blank" rel="noopener">Basic Bluk</a> by Blu</li> - Sleek dark theme with nice fonts and colors.
+      <li><a href="https://github.com/girlcalledblu/ares-basicblu-theme" target="_blank" rel="noopener">Basic Blu</a> by Blu</li> - Sleek dark theme with nice fonts and colors.
       </ul>
       
       <p>See the <a href="https://aresmush.com/tutorials/code/contribs/" target="_blank" rel="noopener">AresMUSH submission guidelines</a> if you want to contribute your own themes.</p>
