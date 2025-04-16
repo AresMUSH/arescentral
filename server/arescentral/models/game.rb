@@ -101,7 +101,7 @@ module AresCentral
     def up_status
       time_since_ping = (Time.now - self.last_ping)
       return "Up" if time_since_ping < (36 * 3600)
-      return "Lost" if time_since_ping > (86400 * 90) # 90 days
+      return "Lost" if time_since_ping > (86400 * 45) # 45 days
       "Down"
     end
 
