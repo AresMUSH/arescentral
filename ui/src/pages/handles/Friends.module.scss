@@ -1,0 +1,14 @@
+@use "../../styles/colors" as *;
+
+.friend-entry {
+  border-bottom: 1px solid $border-color;  
+  margin-bottom: 15px;
+  padding-bottom: 20px;
+}
+
+.friend-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding-top: 20px;
+}

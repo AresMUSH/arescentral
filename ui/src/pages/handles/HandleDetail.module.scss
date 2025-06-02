@@ -1,0 +1,26 @@
+.handle-profile-image {
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.handle-link {
+  i {
+    margin-left: 3px;
+  }    
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.admin-area {
+  margin-top: 70px;  
+}
+
+.admin-note {
+    background-color: white;
+    padding: 15px;
+}
+

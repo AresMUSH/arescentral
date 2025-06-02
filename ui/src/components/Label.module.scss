@@ -1,0 +1,54 @@
+
+.label {
+  display: inline;
+  padding: .4em;
+  font-size: 70%;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+  background-color: #777;
+  font-weight: bold;
+  margin: 0px 5px 0px 0px;
+}
+
+.label.dev {
+  background-color: #2196F3;
+}
+
+.label.limited {
+  background-color: #00713E;
+}
+
+.label.open {
+  background-color: #1FA769;
+}
+
+.label.game-up {
+  background-color: #1FA769;  
+}
+
+.label.game-down {
+  background-color: #CE410D;
+}
+
+.label.skills {
+  background-color: #1FA769;
+}
+
+.label.system {
+  background-color: #00713E;
+}
+
+.label.building {
+  background-color: #006400;
+}
+
+.label.community {
+  background-color: #2196F3;
+}
+
+.label.rp {
+  background-color: #063F68;
+}
