@@ -103,7 +103,7 @@ const LinkedCharacters = () => {
      
      <h2>Link Codes</h2>
      
-     <p>Use one of these codes to link a character to your handle. Each code may only be used once. Log into an AresMUSH game with the character you wish to link and type the command: <code>handle/link Faraday=&lt;code&gt;</code>.</p>
+     <p>Use one of these codes to link a character to your handle. Each code may only be used once. Log into an AresMUSH game with the character you wish to link and type the command: <code>handle/link &lt;handle name&gt;=&lt;code&gt;</code>.</p>
      
      {
        linkCodes ? <ul>
