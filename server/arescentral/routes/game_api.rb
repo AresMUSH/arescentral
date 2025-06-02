@@ -87,7 +87,6 @@ module AresCentral
   
     post "/api/test" do    
       handle_api do
-        Mailer.send("faraday@aresmush.com", "AresMUSH Welcome", "Welcome to AresMUSH! This is a test message.")
         {}
       end
     end
