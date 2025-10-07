@@ -37,7 +37,7 @@ GEM
       redic (~> 1.5.0)
       stal
     ostruct (0.6.1)
-    rack (2.2.10)
+    rack (2.2.19)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
