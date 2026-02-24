@@ -23,7 +23,7 @@ const GamesOrphans = () => {
     
     setCompleteMessage('');
     try {
-      const response = await updateGameStatus(game.id, "Closed", game.is_public, game.wiki_archive, true);
+      const response = await updateGameStatus(game.id, "Closed", game.public_game, game.wiki_archive, true);
       if (isErrorResponse(response)) {
         setCompleteMessage(response.error);
       } else
