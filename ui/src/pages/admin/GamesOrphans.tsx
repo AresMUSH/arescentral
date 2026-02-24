@@ -8,7 +8,6 @@ import { getGamesOrphans, updateGameStatus, GamesOrphansResponse } from "../../s
 import GameStatusIndicator from "../../components/GameStatusIndicator"
 import GameUpIndicator from "../../components/GameUpIndicator"
 import { isErrorResponse } from "../../services/RequestHelper";
-import Label from "../../components/Label"
 
 export async function loadGamesOrphans() : Promise<GamesOrphansResponse> {
   const data = await getGamesOrphans();  
@@ -20,7 +19,7 @@ const GamesOrphans = () => {
   const [completeMessage, setCompleteMessage] = useState<string>("");
   const navigate = useNavigate();
 
-  async function onRetire(game) {
+  async function onRetire(game: Game) {
     
     setCompleteMessage('');
     try {
