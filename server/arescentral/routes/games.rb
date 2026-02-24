@@ -29,6 +29,13 @@ module AresCentral
       end
     end
     
+    get '/api/v2/games/orphans' do
+      handle_request do 
+        handler = GamesOrphansHandler.new(@user)
+        handler.handle
+      end
+    end
+    
     post '/api/v2/log/clean' do
       handle_request do 
         handler = LogCleanerHandler.new(self.get_request_body_json)

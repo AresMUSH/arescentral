@@ -26,6 +26,10 @@ export interface GamesAdminResponse {
   games: Game[]
 }
 
+export interface GamesOrphansResponse {
+  games: Game[]
+}
+
 export async function getStats() : Promise<StatsResponse> {
   const response = await sendGet('admin/stats');
   return { stats: response.data };
@@ -33,6 +37,11 @@ export async function getStats() : Promise<StatsResponse> {
 
 export async function getGamesAdmin() : Promise<GamesAdminResponse> {
   const response = await sendGet('admin/games');
+  return { games: response.data };
+}
+
+export async function getGamesOrphans(): Promise<GamesOrphansResponse> {
+  const response = await sendGet('games/orphans');
   return { games: response.data };
 }
 
@@ -60,11 +69,12 @@ export async function updatePlugin(pluginId : string, values: {}) : Promise<Plug
   return response.data;
 }
 
-export async function updateGameStatus(gameId : string, status : string, isPublic : boolean, wikiArchive: string) : Promise<void | ErrorResponse> {
+export async function updateGameStatus(gameId : string, status : string, isPublic : boolean, wikiArchive: string, aressubRetired: boolean) : Promise<void | ErrorResponse> {
   const body = {
     status: status,
     is_public: isPublic,
-    wiki_archive: wikiArchive
+    wiki_archive: wikiArchive,
+    aressub_retired: aressubRetired
   };
   
   const response = await sendPost(`admin/game-status/${gameId}`, body);

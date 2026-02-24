@@ -34,6 +34,7 @@ const EditGame = () => {
       formik.setFieldValue('status', game.status);
       formik.setFieldValue('is_public', game.public_game);
       formik.setFieldValue('wiki_archive', game.wiki_archive);
+      formik.setFieldValue('aressub_retired', game.aressub_retired);
     }
   }, [game]);
   
@@ -41,18 +42,20 @@ const EditGame = () => {
     status: string;
     is_public: boolean;
     wiki_archive: string;
+    aressub_retired: boolean;
   }
   const formik = useFormik<UpdateGame>({
     initialValues: {
       status: '',
       is_public: false,
-      wiki_archive: ''
+      wiki_archive: '',
+      aressub_retired: false
     },
 
     onSubmit: (async (values) => {
       setCompleteMessage('');
       try {
-        const response = await updateGameStatus(game.id, values.status, values.is_public, values.wiki_archive);
+        const response = await updateGameStatus(game.id, values.status, values.is_public, values.wiki_archive, values.aressub_retired);
         if (isErrorResponse(response)) {
           setCompleteMessage(response.error);
         } else
@@ -117,6 +120,17 @@ const EditGame = () => {
              type="text"
              onChange={formik.handleChange}
              value={formik.values.wiki_archive}
+          />
+        </div>
+             
+        <div className="form-field-group">    
+          <label htmlFor="aressub_retired">AresSub Retired:</label>
+          <input 
+             id="aressub_retired"
+             name="aressub_retired" 
+             type="checkbox" 
+             onChange={formik.handleChange} 
+             checked={formik.values.aressub_retired} 
           />
         </div>
        

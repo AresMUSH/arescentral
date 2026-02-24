@@ -31,6 +31,7 @@ export interface Game {
   activity_time_titles: string[];
   activity_day_titles: string[];
   created_at: Date;
+  aressub_retired: boolean;
 };
 
 export interface GamesIndex {

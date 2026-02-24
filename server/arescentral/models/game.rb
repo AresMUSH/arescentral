@@ -24,6 +24,7 @@ module AresCentral
     attribute :status
     attribute :wiki_archive
     attribute :old_id
+    attribute :aressub_retired, :type => DataType::Boolean, :default => false
     attribute :last_status_update, :type => DataType::Time, :default => Time.now
 
     collection :linked_chars, "AresCentral::LinkedChar"
@@ -49,6 +50,10 @@ module AresCentral
     def is_active?
       self.status != "Closed" && self.up_status == "Up" && 
       (self.is_recently_updated || self.activity_rating >= 2)
+    end
+    
+    def is_up?
+      self.up_status == "Up"
     end
     
     def activity_points
@@ -242,7 +247,8 @@ module AresCentral
         recently_updated: self.is_recently_updated,
         is_active: self.is_active?,
         extras: self.extras || [],
-        summary: self.description.length > 150 ? "#{self.description[0..150]}..." : self.description
+        summary: self.description.length > 150 ? "#{self.description[0..150]}..." : self.description,
+        aressub_retired: self.aressub_retired
       }
     end 
     

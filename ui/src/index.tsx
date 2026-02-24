@@ -14,6 +14,7 @@ import GamesIndex, { loadGames } from "./pages/games/GamesIndex";
 import GameDetail, { loadGame } from "./pages/games/GameDetail";
 import GamesArchive, { loadClosedGames } from "./pages/games/GamesArchive";
 import GamesAdmin, { loadGamesAdmin } from "./pages/admin/GamesAdmin";
+import GamesOrphans, { loadGamesOrphans } from "./pages/admin/GamesOrphans";
 import Admin, { loadStats } from "./pages/admin/Admin";
 import HandlesIndex, { loadHandles } from "./pages/handles/HandlesIndex";
 import HandleDetail, { loadHandle } from "./pages/handles/HandleDetail";
@@ -101,6 +102,11 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <Admin />,
         loader: loadStats
+      },
+      {
+        path: "/admin/games/orphans",
+        element: <GamesOrphans />,
+        loader: loadGamesOrphans
       },
       {
         path: "/handles",
