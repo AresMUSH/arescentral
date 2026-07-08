@@ -32,6 +32,8 @@ module AresCentral
       description = @fields["description"]
       url = @fields["url"] || ""
 
+      installs = (@fields["installs"] || "").to_i
+      
       # custom_code: should be a bool but was descriptive at one time
       custom_code = "#{@fields['custom_code']}".to_bool ? "Yes" : "None"
 
@@ -64,7 +66,7 @@ module AresCentral
         custom_code: custom_code,
         web_portal: web_portal,
         category: category,
-        installs: 0,
+        installs: installs,
         handle: author
       )  
     

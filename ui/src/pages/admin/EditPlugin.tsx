@@ -167,6 +167,18 @@ const EditPlugin = () => {
             <option value="Other" key="other">Other</option>
            </select>
          </div>
+              
+         <div className="form-field-group">   
+           <label htmlFor="url">Installs:</label>
+           <input
+              id="installs"
+              name="installs"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.installs}
+           />
+         </div>
+              
         
         <button type="submit" disabled={formik.isSubmitting}>
          Save
