@@ -45,7 +45,7 @@ export const PluginInfo = ({ plugin, user }: PluginInfoProps) => {
               Installed At:&nbsp;
               {       
                 plugin.games.map( (g : Game) =>         
-                <Link to={`/game/${g.id}`}>{g.name}</Link>
+                <Link className={styles['plugin-game-use']} to={`/game/${g.id}`}>{g.name}</Link>
                 )
               }
               </> : ''
