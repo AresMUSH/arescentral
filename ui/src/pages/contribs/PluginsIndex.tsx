@@ -52,7 +52,7 @@ const PluginsIndex = () => {
       </select>
       
 
-      <p><i className="fas fa-globe"></i> = Web Portal Support Included | <i className="fas fa-laptop-code"></i> = Custom Code Required</p>
+      <p><i className="fas fa-globe"></i> = Web Portal Support Included | <i className="fas fa-laptop-code"></i> = Custom Code/Hook Required</p>
       
       <div className={styles['plugins-gallery']}>
         {       
