@@ -93,7 +93,7 @@ module AresCentral
     
     get "/api/games" do
       handle_api do
-        handler = ApiGamesDirectoryCmd.new(params)
+        handler = ApiGamesDirectoryCmd.new(request_auth, params)
         handler.handle
       end
     end

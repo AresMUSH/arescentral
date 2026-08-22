@@ -1,8 +1,8 @@
 module AresCentral
   class ApiGamesDirectoryCmd
-    def initialize(params)
-      @api_key = params["api_key"]
-      @client_id = params["client_id"]
+    def initialize(auth, params)
+      @api_key = auth ? auth.auth_token : ""
+      @client_id = auth ? auth.id : ""
     end
     
     def handle
