@@ -90,6 +90,13 @@ module AresCentral
         {}
       end
     end
+    
+    get "/api/games" do
+      handle_api do
+        handler = ApiGamesDirectoryCmd.new(params)
+        handler.handle
+      end
+    end
   end
 end
   

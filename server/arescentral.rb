@@ -38,6 +38,7 @@ require 'arescentral/handlers/admin/plugin_update_handler.rb'
 require 'arescentral/handlers/admin/reset_player_password_handler.rb'
 require 'arescentral/handlers/admin/update_game_status_handler.rb'
 
+require 'arescentral/handlers/api/api_games_directory.rb'
 require 'arescentral/handlers/api/api_game_register.rb'
 require 'arescentral/handlers/api/api_game_update.rb'
 require 'arescentral/handlers/api/api_handle_friends.rb'

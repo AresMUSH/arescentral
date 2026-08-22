@@ -103,6 +103,9 @@ module AresCentral
       rescue NotFoundError
         AresCentral.logger.debug "Request not found!"
         status 404
+      rescue AuthenticationError
+        AresCentral.logger.debug "Authentication failed."
+        status 401        
       rescue Exception => ex
         AresCentral.logger.error "Exception in #{request.url}: #{ex.message} #{ex.backtrace[0,10]}"
         error "Request failed."
@@ -115,6 +118,9 @@ module AresCentral
       begin
         data = yield block
         data
+      rescue AuthenticationError
+        AresCentral.logger.debug "Authentication failed."
+        status 401        
       rescue Exception => ex
         AresCentral.logger.error "Exception in #{request.url}: #{ex.message} #{ex.backtrace[0,10]}"
         error "Request failed."
